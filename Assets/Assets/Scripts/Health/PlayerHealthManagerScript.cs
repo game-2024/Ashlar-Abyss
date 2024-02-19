@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static DieselManagerScript;
 
 
 [CreateAssetMenu(fileName = "PlayerHealthManager", menuName = "ScriptableObjects/PlayerHealthManagerScriptableObject")]
@@ -40,13 +39,11 @@ public class PlayerHealthManagerScript : ScriptableObject
     }
 
 
-
     [SerializeField] int damage = 1;//remove after testing
     [SerializeField] int heal = 1;//remove after testing
 
 
     public UnityEvent<int, int> onHealthAdjust;
-
 
     private void OnEnable()
     {
@@ -54,19 +51,17 @@ public class PlayerHealthManagerScript : ScriptableObject
     }
 
 
-   
     public void HealPlayer()//Healing system for player
     {
         CurrentHealth += heal;
+
         onHealthAdjust?.Invoke(CurrentHealth, MaxHealth);
         //Revisit: consume health item
-
     }
 
   
     public void DamagePlayer()//Damage system for player
     {
-
         CurrentHealth -= damage;
         onHealthAdjust?.Invoke(CurrentHealth, MaxHealth);
 
@@ -74,8 +69,6 @@ public class PlayerHealthManagerScript : ScriptableObject
         //Revisit: run player death function
 
     }
-
-
     
  
 }

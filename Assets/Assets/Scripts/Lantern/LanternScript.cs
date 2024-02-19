@@ -14,7 +14,6 @@ public class LanternScript : MonoBehaviour
     [SerializeField]
     private int drainRate;
 
-
     [SerializeField] TimeIntervalComponentScript lanternTimer;
 
     //Custom Material Used to have Sphere fade out when lantern is toggle off.

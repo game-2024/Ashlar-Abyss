@@ -27,8 +27,6 @@ public class CanvasUIScript : MonoBehaviour
         healthManager.onHealthAdjust.RemoveListener(DisplayUpdatedHealth);
     }
 
-
-
     void Start()
     {
         //Dirty method to have UI display diesel and health at the start.

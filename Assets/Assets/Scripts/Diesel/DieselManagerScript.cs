@@ -37,7 +37,6 @@ public class DieselManagerScript : ScriptableObject
         }
     }
 
-
     public UnityEvent<int,int> onDieselUpdated;
 
 
@@ -46,7 +45,6 @@ public class DieselManagerScript : ScriptableObject
         currentDiesel = maxDiesel;
         onDieselUpdated?.Invoke(CurrentDiesel, MaxDiesel);
     }
-
 
     public void DecreaseDieselByAmount(int amountToDecrease)
     {

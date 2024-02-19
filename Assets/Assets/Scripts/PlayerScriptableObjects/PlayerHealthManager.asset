@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerHealthManager
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currHealth: 92
+  currHealth: 100
   damage: 3
   heal: 1
   onHealthAdjust:

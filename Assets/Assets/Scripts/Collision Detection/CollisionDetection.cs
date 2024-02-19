@@ -14,6 +14,7 @@ public class CollisionDetection : MonoBehaviour
     [SerializeField] private UnityEvent onEntityExitCollision;
 
 
+
     private void OnTriggerEnter(Collider other)
     {
         onEntityEnterCollision?.Invoke();
@@ -42,7 +43,7 @@ public class CollisionDetection : MonoBehaviour
         PlayerStatsScript player = other.GetComponent<PlayerStatsScript>();
 
         //Perform Action Event if there is a Player
-        if (player != null && timeIntervalReached == true)
+        if (player != null)
         {
             onPerformActionWhenTriggerEntryOrTick?.Invoke();
         }
@@ -50,7 +51,6 @@ public class CollisionDetection : MonoBehaviour
         timeIntervalReached = false;
 
     }
-
 
     private void OnTriggerExit(Collider other)
     {
