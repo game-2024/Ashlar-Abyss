@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -19,14 +18,9 @@ public class TimeIntervalComponentScript : MonoBehaviour
 
     [SerializeField] private bool timerPaused = false;
 
-
-    [Serializable]
-    public class TimerIntervalCompleted : UnityEvent { }
-    public TimerIntervalCompleted onTimerComplete;
+    [SerializeField] private UnityEvent onTimerComplete;
 
 
-
-    // Update is called once per frame
     void Update()
     {
         if(timerPaused == true)
@@ -40,10 +34,7 @@ public class TimeIntervalComponentScript : MonoBehaviour
         {
             ResetTimer();
 
-            if(onTimerComplete != null) 
-            {
-                onTimerComplete.Invoke();
-            }
+            onTimerComplete?.Invoke();
         }
     }
 

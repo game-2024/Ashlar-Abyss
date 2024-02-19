@@ -4,14 +4,14 @@ using UnityEngine;
 
 public interface IDieselChangeable
 {
-  public  int DieselDrainRate 
+  public int DieselDrainRate 
     { 
         get;
         set; 
     }
 
     public void DecreaseDiesel();
-  public void IncreaseDiesel();
+    public void IncreaseDiesel();
 }
 
 public interface IMainDieselChangable

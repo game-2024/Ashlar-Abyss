@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LanternScript : MonoBehaviour, IDieselChangeable
+public class LanternScript : MonoBehaviour
 {
     [SerializeField] Light lanternLight;
     [SerializeField] float maxLightIntensity;
@@ -13,24 +13,21 @@ public class LanternScript : MonoBehaviour, IDieselChangeable
 
     [SerializeField]
     private int drainRate;
-    public int DieselDrainRate
-    {
-        get { return drainRate; }
 
-        set { drainRate = value; }
-    }
 
     [SerializeField] TimeIntervalComponentScript lanternTimer;
+
+    //Custom Material Used to have Sphere fade out when lantern is toggle off.
+    //FOR TESTING PURPOSED ONLY
     [SerializeField] Material lanterMaterial;
 
 
     private bool playerBrightensLantern = false;
 
-    #region
-    // Update is called once per frame
+
     void Update()
     {
-        if(playerBrightensLantern && dieselManager.CurrentDiesel > 0)
+        if(playerBrightensLantern == true && dieselManager.CurrentDiesel > 0)
         {
             BrightenLantern();
             RaiseLanternOpacity();
@@ -43,7 +40,9 @@ public class LanternScript : MonoBehaviour, IDieselChangeable
     }
 
 
-    //Called from Player Controller
+    #region Lantern Adjustment Functions
+
+    //ToggleLantern() Called from Player Controller
     public void ToggleLantern()
     {
         playerBrightensLantern = !playerBrightensLantern;
@@ -82,6 +81,7 @@ public class LanternScript : MonoBehaviour, IDieselChangeable
 
     private void LowerLanterOpacity()
     {
+        //Have to create a variable of type color to adjust the alpha of the sphere material
         Color tempColor = lanterMaterial.color;
         tempColor.a -= Time.deltaTime;
 
@@ -90,12 +90,12 @@ public class LanternScript : MonoBehaviour, IDieselChangeable
             tempColor.a = 0;
         }
 
-
         lanterMaterial.color = tempColor;
     }
 
     private void RaiseLanternOpacity()
     {
+        //Have to create a variable of type color to adjust the alpha of the sphere material
         Color tempColor = lanterMaterial.color;
         tempColor.a += Time.deltaTime;
 
@@ -110,14 +110,9 @@ public class LanternScript : MonoBehaviour, IDieselChangeable
 
     #endregion
 
-
     public void DecreaseDiesel()
     {
-        dieselManager.DecreaseDieselByAmount(DieselDrainRate);
+        dieselManager.DecreaseDieselByAmount(drainRate);
     }
 
-    public void IncreaseDiesel()
-    {
-
-    }
 }

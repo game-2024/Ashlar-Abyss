@@ -112,7 +112,7 @@ MonoBehaviour:
   lanternLight: {fileID: 4144065160373601110}
   maxLightIntensity: 2
   lightDimmingScale: 1.25
-  dieselManager: {fileID: 0}
+  dieselManager: {fileID: 11400000, guid: e203a334e20724e4d830b6fb109bce64, type: 2}
   drainRate: 1
   lanternTimer: {fileID: 8410064556096748814}
   lanterMaterial: {fileID: 2100000, guid: 4863408099e3198498087ffdb16ee944, type: 2}
@@ -156,7 +156,6 @@ GameObject:
   - component: {fileID: 7790702256406280485}
   - component: {fileID: 49260945495438018}
   - component: {fileID: 4043785366104660074}
-  - component: {fileID: 7986143982366772377}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -229,24 +228,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7986143982366772377
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3687751516026254434}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

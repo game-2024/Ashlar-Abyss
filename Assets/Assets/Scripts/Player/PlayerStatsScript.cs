@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.Experimental.GlobalIllumination;
-using UnityEngine.UIElements;
 
+
+//Script is mainly for identifiying a Player object
 public class PlayerStatsScript : MonoBehaviour
 {
     public float Speed;

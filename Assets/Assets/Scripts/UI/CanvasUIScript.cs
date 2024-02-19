@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CanvasUIScript : MonoBehaviour
@@ -10,20 +9,35 @@ public class CanvasUIScript : MonoBehaviour
     [SerializeField] private TMP_Text diesel_Text;
     [SerializeField] private TMP_Text health_Text;
 
-    // Start is called before the first frame update
+    [SerializeField] private DieselManagerScript dieselManager;
+    [SerializeField] private PlayerHealthManagerScript healthManager;
+
+
+    //When object is enable, add Display functions for Diesel and Health as listenrs of the diesel and health managers
+    private void OnEnable()
+    {
+        dieselManager.onDieselUpdated.AddListener(DisplayUpdatedDiesel);
+        healthManager.onHealthAdjust.AddListener(DisplayUpdatedHealth);
+    }
+
+    //When object is disabled, remove Display functions as listeners to ensure memory is freed
+    private void OnDisable()
+    {
+        dieselManager.onDieselUpdated.RemoveListener(DisplayUpdatedDiesel);
+        healthManager.onHealthAdjust.RemoveListener(DisplayUpdatedHealth);
+    }
+
+
+
     void Start()
     {
-        //Temporarly retrive the DieselManager gameobject and get current and max diesel value for displaying
+        //Dirty method to have UI display diesel and health at the start.
+        //NOTE: Look for better implmentation later
 
-        DieselManagerScript tempRetrievalOfDieselManager = FindObjectOfType<DieselManagerScript>();
-
-        DisplayUpdatedDiesel(tempRetrievalOfDieselManager.CurrentDiesel, tempRetrievalOfDieselManager.MaxDiesel);
+        DisplayUpdatedDiesel(dieselManager.CurrentDiesel, dieselManager.MaxDiesel);
 
         //Retrieve health for temporary testing, update UI later
-
-        healthSystemScript tempRetrievalOfHealthScript = FindObjectOfType<healthSystemScript>();
-
-        DisplayUpdatedHealth(tempRetrievalOfHealthScript.currHealth, tempRetrievalOfHealthScript.maxHealth);
+        DisplayUpdatedHealth(healthManager.CurrentHealth, healthManager.MaxHealth);
     }
 
     public void DisplayUpdatedDiesel(int currentDiesel, int maxDiesel)

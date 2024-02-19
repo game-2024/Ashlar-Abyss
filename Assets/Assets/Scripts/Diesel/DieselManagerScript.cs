@@ -5,7 +5,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Timeline;
 
-public class DieselManagerScript : MonoBehaviour, IDieselAmountsMinMaxReadable, IMainDieselChangable
+
+
+[CreateAssetMenu(fileName = "DieselManager", menuName = "ScriptableObjects/DieselManagerScriptableObject")]
+
+public class DieselManagerScript : ScriptableObject
 {
     [SerializeField] private int maxDiesel = 1000;
     public int MaxDiesel
@@ -16,11 +20,8 @@ public class DieselManagerScript : MonoBehaviour, IDieselAmountsMinMaxReadable, 
     [SerializeField] private int currentDiesel;
     public int CurrentDiesel
     {
-        get 
-        {
-            return currentDiesel;
-        }
-        
+        get { return currentDiesel; }
+
         set
         {
             currentDiesel = value;
@@ -28,41 +29,35 @@ public class DieselManagerScript : MonoBehaviour, IDieselAmountsMinMaxReadable, 
             {
                 currentDiesel = maxDiesel;
             }
+
+            if(currentDiesel < 0)
+            {
+                currentDiesel = 0;
+            }
         }
     }
 
 
-    [Serializable]
-    public class DieselUpdated : UnityEvent<int,int> { }
-    public  DieselUpdated onDieselUpdated;
+    public UnityEvent<int,int> onDieselUpdated;
 
-    private void Start()
+
+    private void OnEnable()
     {
         currentDiesel = maxDiesel;
-    }
-
-    private  void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            currentDiesel = maxDiesel;
-        }
+        onDieselUpdated?.Invoke(CurrentDiesel, MaxDiesel);
     }
 
 
     public void DecreaseDieselByAmount(int amountToDecrease)
     {
         CurrentDiesel -= amountToDecrease;
-
-        if (onDieselUpdated != null)
-        {
-            onDieselUpdated.Invoke(currentDiesel, maxDiesel);
-        }
+        onDieselUpdated?.Invoke(currentDiesel, maxDiesel);
     }
 
     public void IncreaseDieselByAmount(int amountToIncrease)
     {
         CurrentDiesel += amountToIncrease;
+        onDieselUpdated?.Invoke(currentDiesel, maxDiesel);
     }
 
 

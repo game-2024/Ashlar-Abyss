@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06625653, g: 0.062158726, b: 0.043158732, a: 1}
+  m_IndirectSpecularColor: {r: 0.066256456, g: 0.062158734, b: 0.043158755, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -242,7 +242,11 @@ PrefabInstance:
     - target: {fileID: 6106001598797128585, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
       propertyPath: dieselManager
       value: 
-      objectReference: {fileID: 1044425678}
+      objectReference: {fileID: 11400000, guid: e203a334e20724e4d830b6fb109bce64, type: 2}
+    - target: {fileID: 6106001598797128585, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
+      propertyPath: healthManager
+      value: 
+      objectReference: {fileID: 11400000, guid: b792e5d68febdfd4297a8278f3910c7c, type: 2}
     - target: {fileID: 7604862497643465465, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
       propertyPath: m_Name
       value: diesel_Text
@@ -266,18 +270,18 @@ PrefabInstance:
     - target: {fileID: 7060479779461647782, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
       propertyPath: dieselManager
       value: 
-      objectReference: {fileID: 1044425678}
+      objectReference: {fileID: 11400000, guid: e203a334e20724e4d830b6fb109bce64, type: 2}
     - target: {fileID: 7227560086223989323, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.061917067
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7227560086223989323, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.02
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 7227560086223989323, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.058974504
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7227560086223989323, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -322,19 +326,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8850417909966095547, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1829576068}
   m_SourcePrefab: {fileID: 100100000, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
---- !u!114 &184893415 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6106001598797128585, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
-  m_PrefabInstance: {fileID: 27293787}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f173d20a1254f5943a453610fc7ee7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &247529450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7060479779461647782, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
@@ -346,69 +342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33332edd181db684793de61125c59f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &326672768
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 326672770}
-  - component: {fileID: 326672769}
-  m_Layer: 0
-  m_Name: HealthManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &326672769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326672768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbb192a5a5fbacb4490640ea470955b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currHealth: 100
-  damage: 4
-  heal: 4
-  onHealthAdjust:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 184893415}
-        m_TargetAssemblyTypeName: CanvasUIScript, Assembly-CSharp
-        m_MethodName: DisplayUpdatedHealth
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!4 &326672770
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326672768}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &671245588
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,11 +436,435 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -13.735, y: -30, z: 0}
+--- !u!1 &700047574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 700047579}
+  - component: {fileID: 700047578}
+  - component: {fileID: 700047577}
+  - component: {fileID: 700047576}
+  - component: {fileID: 700047575}
+  - component: {fileID: 700047580}
+  m_Layer: 0
+  m_Name: CollisionDetectionSphereHeal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &700047575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700047574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ab1ff91b619234390328b8bffb63d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTimerTickActive: 0
+  onPerformActionWhenTriggerEntryOrTick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b792e5d68febdfd4297a8278f3910c7c, type: 2}
+        m_TargetAssemblyTypeName: PlayerHealthManagerScript, Assembly-CSharp
+        m_MethodName: HealPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: e203a334e20724e4d830b6fb109bce64, type: 2}
+        m_TargetAssemblyTypeName: DieselManagerScript, Assembly-CSharp
+        m_MethodName: IncreaseDieselByAmount
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEntityEnterCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 700047580}
+        m_TargetAssemblyTypeName: TimeIntervalComponentScript, Assembly-CSharp
+        m_MethodName: ResumeTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEntityExitCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 700047580}
+        m_TargetAssemblyTypeName: TimeIntervalComponentScript, Assembly-CSharp
+        m_MethodName: PauseTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 700047580}
+        m_TargetAssemblyTypeName: TimeIntervalComponentScript, Assembly-CSharp
+        m_MethodName: ResetTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!135 &700047576
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700047574}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &700047577
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700047574}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &700047578
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700047574}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &700047579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700047574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.71, y: 1.36, z: -0.784}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &700047580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700047574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2306aad23125fa478c089743491943d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timePerInterval: 1
+  timerPaused: 1
+  onTimerComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 700047575}
+        m_TargetAssemblyTypeName: CollisionDetection, Assembly-CSharp
+        m_MethodName: TimeIntervalReached
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &781499130 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 722090173576624628, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
   m_PrefabInstance: {fileID: 27293787}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &783749661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 783749666}
+  - component: {fileID: 783749665}
+  - component: {fileID: 783749664}
+  - component: {fileID: 783749663}
+  - component: {fileID: 783749662}
+  - component: {fileID: 783749667}
+  m_Layer: 0
+  m_Name: CollisionDetectionCubeDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &783749662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783749661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ab1ff91b619234390328b8bffb63d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTimerTickActive: 1
+  onPerformActionWhenTriggerEntryOrTick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b792e5d68febdfd4297a8278f3910c7c, type: 2}
+        m_TargetAssemblyTypeName: PlayerHealthManagerScript, Assembly-CSharp
+        m_MethodName: DamagePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEntityEnterCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 783749667}
+        m_TargetAssemblyTypeName: TimeIntervalComponentScript, Assembly-CSharp
+        m_MethodName: ResumeTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEntityExitCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 783749667}
+        m_TargetAssemblyTypeName: TimeIntervalComponentScript, Assembly-CSharp
+        m_MethodName: PauseTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 783749667}
+        m_TargetAssemblyTypeName: TimeIntervalComponentScript, Assembly-CSharp
+        m_MethodName: ResetTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!33 &783749663
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783749661}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &783749664
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783749661}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &783749665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783749661}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &783749666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783749661}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.793, y: 2.23, z: 0}
+  m_LocalScale: {x: 1, y: 2.2906, z: 3.1238}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &783749667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783749661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2306aad23125fa478c089743491943d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timePerInterval: 1
+  timerPaused: 1
+  onTimerComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 783749662}
+        m_TargetAssemblyTypeName: CollisionDetection, Assembly-CSharp
+        m_MethodName: TimeIntervalReached
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &818064855
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,67 +971,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1044425675
+--- !u!1 &828611074 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8850417909966095547, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
+  m_PrefabInstance: {fileID: 83520850}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1044425677}
-  - component: {fileID: 1044425678}
-  m_Layer: 0
-  m_Name: DieselManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1044425677
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044425675}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.9566605, y: -0.36025688, z: -0.90427727}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1044425678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044425675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2605b43c8d281074ba60abe7b09e4b39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDiesel: 1000
-  currentDiesel: 1000
-  onDieselUpdated:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 184893415}
-        m_TargetAssemblyTypeName: CanvasUIScript, Assembly-CSharp
-        m_MethodName: DisplayUpdatedDiesel
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1288241642
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +1022,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1829576063}
   lantern: {fileID: 247529450}
+  healthManager: {fileID: 11400000, guid: b792e5d68febdfd4297a8278f3910c7c, type: 2}
+  dieselManager: {fileID: 0}
 --- !u!1 &1310014358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,12 +1334,39 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8030525559824733967, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
   m_PrefabInstance: {fileID: 83520850}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 828611074}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aea10563ba8f7784dadb32af870d2384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1829576068
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828611074}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1047,6 +1377,6 @@ SceneRoots:
   - {fileID: 1310014361}
   - {fileID: 27293787}
   - {fileID: 1288241643}
-  - {fileID: 1044425677}
   - {fileID: 83520850}
-  - {fileID: 326672770}
+  - {fileID: 783749666}
+  - {fileID: 700047579}
