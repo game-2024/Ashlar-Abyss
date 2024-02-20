@@ -6,8 +6,8 @@ using UnityEngine.Events;
 using UnityEngine.Timeline;
 
 
-
 [CreateAssetMenu(fileName = "DieselManager", menuName = "ScriptableObjects/DieselManagerScriptableObject")]
+
 
 public class DieselManagerScript : ScriptableObject
 {
@@ -37,8 +37,8 @@ public class DieselManagerScript : ScriptableObject
         }
     }
 
+    [HideInInspector]
     public UnityEvent<int,int> onDieselUpdated;
-
 
     private void OnEnable()
     {
@@ -52,12 +52,12 @@ public class DieselManagerScript : ScriptableObject
         onDieselUpdated?.Invoke(currentDiesel, maxDiesel);
     }
 
+
     public void IncreaseDieselByAmount(int amountToIncrease)
     {
         CurrentDiesel += amountToIncrease;
         onDieselUpdated?.Invoke(currentDiesel, maxDiesel);
     }
-
 
 
 }

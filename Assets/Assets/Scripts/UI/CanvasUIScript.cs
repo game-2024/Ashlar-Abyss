@@ -31,7 +31,6 @@ public class CanvasUIScript : MonoBehaviour
     {
         //Dirty method to have UI display diesel and health at the start.
         //NOTE: Look for better implmentation later
-
         DisplayUpdatedDiesel(dieselManager.CurrentDiesel, dieselManager.MaxDiesel);
 
         //Retrieve health for temporary testing, update UI later

@@ -11,15 +11,15 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
+  - PlayerDamage
   - 
   - 
+  - Enemy
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enviorment
+  - Enivorment Damageable
   - 
   - 
   - 

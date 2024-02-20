@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class CollisionDetection : MonoBehaviour
 {
-    [SerializeField] private bool isTimerTickActive = false;
+    [SerializeField] private bool isTimerActivated = false;
 
     private bool timeIntervalReached = false;
 
-    [SerializeField] private UnityEvent onPerformActionWhenTriggerEntryOrTick;
+    [SerializeField] private UnityEvent<Collider> onPerformActionWhenTriggerEntryOrTick;
     [SerializeField] private UnityEvent onEntityEnterCollision;
     [SerializeField] private UnityEvent onEntityExitCollision;
 
@@ -19,16 +19,16 @@ public class CollisionDetection : MonoBehaviour
     {
         onEntityEnterCollision?.Invoke();
 
-        if(isTimerTickActive == false)
+        if(isTimerActivated == false)
         {
             //Currently Directly Looks for Player. Later edit to work with enemies if needed
-            PlayerStatsScript player = other.GetComponent<PlayerStatsScript>();
+            //PlayerStatsScript player = other.GetComponent<PlayerStatsScript>();
 
             //Perform Action Event if there is a Player
-            if (player != null)
-            {
-                onPerformActionWhenTriggerEntryOrTick?.Invoke();
-            }
+            //if (player != null)
+            //{
+                onPerformActionWhenTriggerEntryOrTick?.Invoke(other);
+            //}
 
         }
 
@@ -37,16 +37,16 @@ public class CollisionDetection : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         
-        if(timeIntervalReached == false || isTimerTickActive == false) { return; }
+        if(timeIntervalReached == false || isTimerActivated == false) { return; }
 
         //Currently Directly Looks for Player. Later edit to work with enemies if needed
-        PlayerStatsScript player = other.GetComponent<PlayerStatsScript>();
+        //PlayerStatsScript player = other.GetComponent<PlayerStatsScript>();
 
         //Perform Action Event if there is a Player
-        if (player != null)
-        {
-            onPerformActionWhenTriggerEntryOrTick?.Invoke();
-        }
+        //if (player != null)
+        //{
+            onPerformActionWhenTriggerEntryOrTick?.Invoke(other);
+        //}
 
         timeIntervalReached = false;
 

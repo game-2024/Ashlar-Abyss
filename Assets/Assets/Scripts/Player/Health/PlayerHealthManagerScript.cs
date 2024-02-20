@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 
 [CreateAssetMenu(fileName = "PlayerHealthManager", menuName = "ScriptableObjects/PlayerHealthManagerScriptableObject")]
-
 public class PlayerHealthManagerScript : ScriptableObject
 {
     [SerializeField] private int maxHealth = 100;
@@ -43,6 +42,7 @@ public class PlayerHealthManagerScript : ScriptableObject
     [SerializeField] int heal = 1;//remove after testing
 
 
+    [HideInInspector]
     public UnityEvent<int, int> onHealthAdjust;
 
     private void OnEnable()

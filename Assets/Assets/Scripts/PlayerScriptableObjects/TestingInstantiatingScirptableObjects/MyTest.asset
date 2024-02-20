@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2605b43c8d281074ba60abe7b09e4b39, type: 3}
-  m_Name: DieselManager
+  m_Script: {fileID: 11500000, guid: 477e0d710e7fecf41844683d20afad8e, type: 3}
+  m_Name: MyTest
   m_EditorClassIdentifier: 
-  maxDiesel: 1000
-  currentDiesel: 700
-  onDieselUpdated:
-    m_PersistentCalls:
-      m_Calls: []
+  myTestData: Hello
