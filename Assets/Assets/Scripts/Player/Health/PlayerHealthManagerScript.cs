@@ -37,7 +37,6 @@ public class PlayerHealthManagerScript : ScriptableObject
         }
     }
 
-
     [SerializeField] int damage = 1;//remove after testing
     [SerializeField] int heal = 1;//remove after testing
 
@@ -70,5 +69,4 @@ public class PlayerHealthManagerScript : ScriptableObject
 
     }
     
- 
 }

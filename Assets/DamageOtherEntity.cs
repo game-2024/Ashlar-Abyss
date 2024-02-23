@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeaponScript : MonoBehaviour, IDamager
+public class DamageOtherEntity : MonoBehaviour, IDamager
 {
 
-    [SerializeField] private int damageToDeal;
-
+    [SerializeField] int damageToDeal;
 
     public void DealDamage(Collider collided_with)
     {
