@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06170208, g: 0.05727993, b: 0.0367823, a: 1}
+  m_IndirectSpecularColor: {r: 0.061702162, g: 0.05727987, b: 0.036782164, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -401,6 +401,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8850417909966095547, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1829576078}
+    - targetCorrespondingSourceObject: {fileID: 8850417909966095547, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1829576079}
     - targetCorrespondingSourceObject: {fileID: 1098805375562435322, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1335588019}
@@ -952,7 +955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967126778afbf4e4c939525059a317aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageToDeal: 5
+  damageToDeal: 20
 --- !u!1 &818064855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,6 +1451,7 @@ GameObject:
   - component: {fileID: 1766853562}
   - component: {fileID: 1766853561}
   - component: {fileID: 1766853560}
+  - component: {fileID: 1766853565}
   m_Layer: 10
   m_Name: TestEnemyHitCollision
   m_TagString: Untagged
@@ -1556,6 +1560,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1766853565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766853559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ab1ff91b619234390328b8bffb63d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTimerActivated: 0
+  onPerformActionWhenTriggerEntryOrTick:
+    m_PersistentCalls:
+      m_Calls: []
+  onEntityEnterCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  onEntityExitCollision:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1829576063 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8030525559824733967, guid: 1eae1f6f03d682f4b8ae4b64ed59138b, type: 3}
@@ -1644,6 +1670,33 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerStatsScript, Assembly-CSharp
         m_MethodName: HitCooldownReached
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1829576079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828611074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7800dd80f8116bd43a39014361f55d8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829576063}
+        m_TargetAssemblyTypeName: PlayerStatsScript, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

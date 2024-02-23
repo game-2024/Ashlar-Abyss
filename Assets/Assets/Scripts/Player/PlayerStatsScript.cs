@@ -4,7 +4,7 @@ using System.Collections;
 
 
 //Script is mainly for identifiying a Player object
-public class PlayerStatsScript : MonoBehaviour, IDamageable
+public class PlayerStatsScript : MonoBehaviour//, IDamageable
 {
     [SerializeField] private PlayerHealthManagerScript healthManagerScript;
     [SerializeField] private TimeIntervalComponentScript timer;
@@ -14,6 +14,7 @@ public class PlayerStatsScript : MonoBehaviour, IDamageable
 
     public float Speed;
 
+
     public float GetPlayerSpeed()
     {
         return Speed;
@@ -21,7 +22,8 @@ public class PlayerStatsScript : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage_to_take)
     {
-        healthManagerScript.DamagePlayer();
+
+        healthManagerScript.DamagePlayer(damage_to_take);
 
         hitCooldownTimer.ResetTimer();
         hitCooldownTimer.ResumeTimer();

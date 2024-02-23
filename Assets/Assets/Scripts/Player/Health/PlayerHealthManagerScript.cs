@@ -37,8 +37,8 @@ public class PlayerHealthManagerScript : ScriptableObject
         }
     }
 
-    [SerializeField] int damage = 1;//remove after testing
-    [SerializeField] int heal = 1;//remove after testing
+    public int damage = 1;//remove after testing
+    public int heal = 1;//remove after testing
 
 
     [HideInInspector]
@@ -59,9 +59,9 @@ public class PlayerHealthManagerScript : ScriptableObject
     }
 
   
-    public void DamagePlayer()//Damage system for player
+    public void DamagePlayer(int damage_to_take)//Damage system for player
     {
-        CurrentHealth -= damage;
+        CurrentHealth -= damage_to_take;
         onHealthAdjust?.Invoke(CurrentHealth, MaxHealth);
 
         //Revisit: add invincibility frames
