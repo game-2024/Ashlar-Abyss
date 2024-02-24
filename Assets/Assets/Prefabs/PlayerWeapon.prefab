@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2617364390871028119}
   - component: {fileID: 2928104080612914510}
   - component: {fileID: 5657409042063528785}
-  - component: {fileID: 5769100897372501455}
+  - component: {fileID: 6981603596229596602}
   m_Layer: 6
   m_Name: PlayerWeapon
   m_TagString: Untagged
@@ -226,7 +226,7 @@ MonoBehaviour:
   onEntityExitCollision:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5769100897372501455
+--- !u!114 &6981603596229596602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8676498874351132293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb02251b44d005a45b2c820a6ea96cdb, type: 3}
+  m_Script: {fileID: 11500000, guid: 967126778afbf4e4c939525059a317aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageToDeal: 5
