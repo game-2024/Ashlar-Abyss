@@ -21,15 +21,7 @@ public class CollisionDetection : MonoBehaviour
 
         if(isTimerActivated == false)
         {
-            //Currently Directly Looks for Player. Later edit to work with enemies if needed
-            //PlayerStatsScript player = other.GetComponent<PlayerStatsScript>();
-
-            //Perform Action Event if there is a Player
-            //if (player != null)
-            //{
-                onPerformActionWhenTriggerEntryOrTick?.Invoke(other);
-            //}
-
+           onPerformActionWhenTriggerEntryOrTick?.Invoke(other);
         }
 
     }

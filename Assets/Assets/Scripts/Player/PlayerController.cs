@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.U))
         {
-            healthManager.DamagePlayer();
+            healthManager.DamagePlayer(healthManager.damage);
         }
 
         #endregion

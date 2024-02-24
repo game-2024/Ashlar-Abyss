@@ -21,6 +21,7 @@ public class TimeIntervalComponentScript : MonoBehaviour
     [SerializeField] private UnityEvent onTimerComplete;
 
 
+
     void Update()
     {
         if(timerPaused == true)
