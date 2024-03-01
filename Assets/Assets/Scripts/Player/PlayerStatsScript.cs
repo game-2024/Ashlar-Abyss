@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Cinemachine;
 
 
 //Script is mainly for identifiying a Player object
@@ -10,14 +11,28 @@ public class PlayerStatsScript : MonoBehaviour//, IDamageable
     [SerializeField] private TimeIntervalComponentScript timer;
     [SerializeField] private TimeIntervalComponentScript hitCooldownTimer;
 
+
+    private Rigidbody playerRB;
+
     private bool isHit = false;
 
-    public float Speed;
+    public float speed;
 
+
+    private void Start()
+    {
+        playerRB = GetComponent<Rigidbody>();
+    }
+
+
+    public void Move(Vector3 movementVector)
+    {
+        playerRB.velocity = movementVector * speed;
+    }
 
     public float GetPlayerSpeed()
     {
-        return Speed;
+        return speed;
     }
 
     public void TakeDamage(int damage_to_take)

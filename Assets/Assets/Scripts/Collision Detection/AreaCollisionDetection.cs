@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CollisionDetection : MonoBehaviour
+public class AreaCollisionDetection : MonoBehaviour
 {
     [SerializeField] private bool isTimerActivated = false;
 
