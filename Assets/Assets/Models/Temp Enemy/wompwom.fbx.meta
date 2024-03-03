@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 82850c8239c6e6a4085a40b38072e0cd
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: wompwom(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body
+      parentName: wompwom(Clone)
+      position: {x: -0.00003872055, y: 0.00010066107, z: 0.0025575461}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 84.7712, y: 91.21967, z: 83.78147}
+    - name: Light
+      parentName: wompwom(Clone)
+      position: {x: -4.0762453, y: 5.903862, z: -1.00545}
+      rotation: {x: 0.52327543, y: -0.34203392, z: 0.72694236, w: 0.28416622}
+      scale: {x: 100.00001, y: 100, z: 100}
+    - name: Camera
+      parentName: wompwom(Clone)
+      position: {x: -7.3588915, y: 4.958309, z: 6.925791}
+      rotation: {x: 0.09062847, y: 0.89379627, z: -0.20997298, w: 0.3857799}
+      scale: {x: 100, y: 100.00001, z: 99.99999}
+    - name: Empty
+      parentName: wompwom(Clone)
+      position: {x: 3.2139997, y: 0.753905, z: -2.4399998}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Empty.001
+      parentName: wompwom(Clone)
+      position: {x: 2.497399, y: 0.753905, z: 4.7477145}
+      rotation: {x: 0.000000057601174, y: -0.70710677, z: 0.00000005760117, w: 0.7071068}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Legs
+      parentName: wompwom(Clone)
+      position: {x: -0.1008131, y: 0.66611356, z: 0.0025576383}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: -9.629826, y: -10.929735, z: -9.629826}
+    - name: Hands
+      parentName: wompwom(Clone)
+      position: {x: -0.15474074, y: 1.2484059, z: 0.015412004}
+      rotation: {x: -0.67608964, y: 0.20712982, z: -0.20712978, w: 0.6760897}
+      scale: {x: -9.629826, y: -10.929735, z: -9.629826}
+    - name: Head
+      parentName: wompwom(Clone)
+      position: {x: -0.00003872055, y: 1.4959369, z: 0.0025575461}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 8.663209, y: 8.663209, z: 8.663209}
+    - name: Neck
+      parentName: wompwom(Clone)
+      position: {x: -0.00003872055, y: 1.3766648, z: -0.006505317}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 5.6239433, y: 5.6239433, z: 5.6239433}
+    - name: Hair
+      parentName: wompwom(Clone)
+      position: {x: -0.00003872055, y: 1.4959369, z: 0.0025575461}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 8.663209, y: 8.663209, z: 8.663209}
+    - name: Buttons
+      parentName: wompwom(Clone)
+      position: {x: -0.00003872055, y: 1.1068078, z: 0.11767139}
+      rotation: {x: 1, y: -1.1102233e-16, z: 1.110223e-16, w: 0.0000000754979}
+      scale: {x: -1.6513894, y: -1.6513894, z: -1.6513894}
+    - name: Mask
+      parentName: wompwom(Clone)
+      position: {x: -0.00003872055, y: 1.5076927, z: 0.0025575461}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 9.073442, y: 9.073442, z: 9.073442}
+    - name: Cylinder
+      parentName: wompwom(Clone)
+      position: {x: -0.0046076234, y: 1.4354217, z: 0.0025575461}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1.5963309, y: 1.5963309, z: 0.5617186}
+    - name: Arms
+      parentName: wompwom(Clone)
+      position: {x: -0.28479078, y: 1.0727446, z: 0.011060038}
+      rotation: {x: -0.67732835, y: 0.20304304, z: -0.20304295, w: 0.6773282}
+      scale: {x: 6.006337, y: 6.8861065, z: 21.985964}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 0
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
