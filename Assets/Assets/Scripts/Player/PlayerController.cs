@@ -1,8 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,11 +14,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerHealthManagerScript healthManager;
     [SerializeField] private DieselManagerScript dieselManager;
 
-    //InputActionMap
-    [SerializeField] private PlayerInput playerInputReciever;
-    private InputAction playerInputMove;
-
-
     //Camera Transform
     [SerializeField] CinemachineVirtualCamera playerPOVCam;
     private Transform cameraTransform;
@@ -32,7 +24,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerInputMove = playerInputReciever.actions["WASDMovement"];
         cameraTransform = playerPOVCam.transform;
     }
 
@@ -40,8 +31,8 @@ public class PlayerController : MonoBehaviour
     {
         #region Temp Movement
 
-        float forwardMovement = playerInputMove.ReadValue<Vector2>().y;
-        float rightMovement = playerInputMove.ReadValue<Vector2>().x;
+        float forwardMovement = Input.GetAxis("Vertical");
+        float rightMovement = Input.GetAxis("Horizontal");
 
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
