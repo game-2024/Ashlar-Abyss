@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &338228307568067256
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9119555458416969429}
+  - component: {fileID: 3590994471367607474}
+  m_Layer: 0
+  m_Name: NameContainer(EditorOnly)
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9119555458416969429
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338228307568067256}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3334933238078934616}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3590994471367607474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338228307568067256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190d9e9918d0aaf48a103a2bb6995059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameOverride: Weapon Diesel Drain Timer
+  tooltipOverride: 
+  target: {fileID: 7223569685502127967}
 --- !u!1 &5756527624846819167
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +155,8 @@ GameObject:
   - component: {fileID: 2928104080612914510}
   - component: {fileID: 5657409042063528785}
   - component: {fileID: 6981603596229596602}
+  - component: {fileID: 7223569685502127967}
+  - component: {fileID: 2311208297586163155}
   m_Layer: 6
   m_Name: PlayerWeapon
   m_TagString: Untagged
@@ -129,6 +178,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5187190975792039327}
+  - {fileID: 9119555458416969429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7917635075266879145
@@ -219,7 +269,19 @@ MonoBehaviour:
   isTimerActivated: 0
   onPerformActionWhenTriggerEntryOrTick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6981603596229596602}
+        m_TargetAssemblyTypeName: Damager, Assembly-CSharp
+        m_MethodName: DealDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onEntityEnterCollision:
     m_PersistentCalls:
       m_Calls: []
@@ -239,3 +301,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToDeal: 5
+--- !u!114 &7223569685502127967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676498874351132293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2306aad23125fa478c089743491943d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timePerInterval: 1
+  timerPaused: 1
+  onTimerComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2311208297586163155}
+        m_TargetAssemblyTypeName: PlayerWeaponScript, Assembly-CSharp
+        m_MethodName: DecreaseDiesel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2311208297586163155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676498874351132293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb02251b44d005a45b2c820a6ea96cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DieselManager: {fileID: 11400000, guid: e203a334e20724e4d830b6fb109bce64, type: 2}
+  DieselDrainTimer: {fileID: 7223569685502127967}
+  DamagerComponent: {fileID: 6981603596229596602}
+  WeaponLight: {fileID: 3825863074836680575}
+  MaxLightIntensity: 1
+  LightIntensityIncreaseScaler: 1.5
+  DamageToDeal: 5
+  DamageScaler: 1
+  HeatedDamageToDeal: 10
+  HeatedDamageScaler: 1.2
+  DieselDrainRate: 5

@@ -5,9 +5,9 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour, IDamageable
 {
-     public UnityEvent<int> onDamaged;
+     public UnityEvent<float> onDamaged;
 
-    public void TakeDamage(int damage_taken)
+    public void TakeDamage(float damage_taken)
     {
         onDamaged?.Invoke(damage_taken);
     }

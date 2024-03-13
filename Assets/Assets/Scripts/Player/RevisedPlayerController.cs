@@ -7,12 +7,13 @@ public class RevisedPlayerMovement : MonoBehaviour
 {
 
     Transform PlayerCamTransformReference;
-    [SerializeField] private float Speed;
-    //[SerializeField] private Rigidbody playerRB;
     [SerializeField] private CharacterController PlayerCharacterController;
-    public bool togglecamera;
-    public bool toggleMove;
 
+    [Space]
+
+    [Header("Player Equipment")]
+    [SerializeField] LanternScript lantern;
+    [SerializeField] PlayerWeaponScript playerWeapon;
 
 
     Vector3 InputAxis;
@@ -20,9 +21,25 @@ public class RevisedPlayerMovement : MonoBehaviour
     float horizontalMovementInputAxis;
 
 
+
+    [Space]
+    [Header("Player Movement Feel Fields")]
+    [SerializeField] private float SmoothingTime;
+    [SerializeField] private float Speed;
     private float TargetRotation;
     private float _rotationVelocity;
-    [SerializeField] private float SmoothingTime;
+
+
+    enum PlayerDieselState
+    {
+        None = 0,
+        Lantern = 1,
+        Sword = 2
+
+    };
+
+
+    PlayerDieselState dieselState = PlayerDieselState.None;
 
 
 
@@ -43,6 +60,66 @@ public class RevisedPlayerMovement : MonoBehaviour
         HandleMovement();
         HandlePlayerRotation();
 
+
+        //Diesel Drain Equipment State
+        switch (dieselState)
+        {
+
+            //Case if Player isnt using diesel equipment. Look for player input to change state
+            case PlayerDieselState.None:
+
+                #region Case None Logic
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        dieselState = PlayerDieselState.Lantern;
+                        lantern.ToggleLantern();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.G))
+                    {
+                        dieselState = PlayerDieselState.Sword;
+                        playerWeapon.ToggleWeaponHeated();
+                    }
+
+                    Debug.Log("In None State");
+                #endregion
+
+                break;
+
+            //Case if Player is using lantern. Look for player input to change exit lantern state
+            case PlayerDieselState.Lantern:
+
+                #region Case Lantern Logic
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    dieselState = PlayerDieselState.None;
+                    lantern.ToggleLantern();
+                }
+
+                Debug.Log(" In Lantern State");
+                #endregion
+
+                break;
+
+            //Case if Player is using Sword. Look for player input to change exit Sword state
+            case PlayerDieselState.Sword:
+
+                #region Case Sword Logic
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    dieselState = PlayerDieselState.None;
+                    playerWeapon.ToggleWeaponHeated();
+                }
+
+                Debug.Log("In Sword State");
+                #endregion
+
+                break;
+
+            default: 
+                dieselState = PlayerDieselState.None;
+                break;
+
+        }
 
 
 

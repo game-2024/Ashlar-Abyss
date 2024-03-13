@@ -35,7 +35,7 @@ public class PlayerStatsScript : MonoBehaviour//, IDamageable
         return speed;
     }
 
-    public void TakeDamage(int damage_to_take)
+    public void TakeDamage(float damage_to_take)
     {
 
         healthManagerScript.DamagePlayer(damage_to_take);
