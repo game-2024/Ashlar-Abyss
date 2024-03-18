@@ -10,25 +10,21 @@ public class DieselDial : MonoBehaviour
     [SerializeField] private float MaximumDieselValueRotation = -90f;
     [SerializeField] private float MinimumDieslValueRotation = 90f;
 
-    private float OldDieselValueRotation;
-    private float NewDieselValueRotation;
+    private float DieselPercentage = 1f;
 
-    [SerializeField][Range(0f,1f)] private float DieselPercentage;
-
-    public void UpdateDiesel(int currentNewDiesel, int maxNewDiesel)
+    private void UpdateDiesel(int currentNewDiesel, int maxNewDiesel)
     {
-        OldDieselValueRotation = DieselPercentage;
-        DieselPercentage = currentNewDiesel/ (float)maxNewDiesel;
+        DieselPercentage = Mathf.Clamp(currentNewDiesel/ (float)maxNewDiesel,0f,1f) ;
     }
 
     private void Update()
     {
-        float dialRotation = Mathf.Lerp(MinimumDieslValueRotation, MaximumDieselValueRotation, DieselPercentage);
+        //Variable will be value between Min and Max Value Rotation based of percantage(lerp) between Max and Min
+        float dialValueToRotateTo = Mathf.Lerp(MinimumDieslValueRotation, MaximumDieselValueRotation, DieselPercentage);
 
 
         Quaternion currentRotation = Needle.transform.rotation;
-
-        Quaternion newRotation = Quaternion.Euler(new Vector3(0f, 0f, dialRotation));
+        Quaternion newRotation = Quaternion.Euler(new Vector3(0f, 0f, dialValueToRotateTo));
 
         Needle.transform.rotation = Quaternion.Lerp(currentRotation, newRotation, Time.deltaTime);
     }
