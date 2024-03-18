@@ -8,15 +8,15 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "PlayerHealthManager", menuName = "ScriptableObjects/PlayerHealthManagerScriptableObject")]
 public class PlayerHealthManagerScript : ScriptableObject
 {
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currHealth;
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float currHealth;
 
-    public int MaxHealth
+    public float MaxHealth
     {
         get { return maxHealth; }
     }
 
-    public int CurrentHealth
+    public float CurrentHealth
     {
         get { return currHealth; }
 
@@ -42,7 +42,7 @@ public class PlayerHealthManagerScript : ScriptableObject
 
 
     [HideInInspector]
-    public UnityEvent<int, int> onHealthAdjust;
+    public UnityEvent<float, float> onHealthAdjust;
 
     private void OnEnable()
     {
@@ -59,7 +59,7 @@ public class PlayerHealthManagerScript : ScriptableObject
     }
 
   
-    public void DamagePlayer(int damage_to_take)//Damage system for player
+    public void DamagePlayer(float damage_to_take)//Damage system for player
     {
         CurrentHealth -= damage_to_take;
         onHealthAdjust?.Invoke(CurrentHealth, MaxHealth);

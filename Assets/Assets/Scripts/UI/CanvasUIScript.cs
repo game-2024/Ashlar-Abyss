@@ -42,9 +42,9 @@ public class CanvasUIScript : MonoBehaviour
         diesel_Text.text = "Diesel: " + currentDiesel + " \\ " + maxDiesel;
     }
 
-    public void DisplayUpdatedHealth(int currHealth, int maxHealth)
+    public void DisplayUpdatedHealth(float currHealth, float maxHealth)
     {
-        health_Text.text = "Health: " + currHealth + " \\ " + maxHealth;
+        health_Text.text = "Health: " + currHealth + " \\ " + (int)maxHealth;
     }
 
 }

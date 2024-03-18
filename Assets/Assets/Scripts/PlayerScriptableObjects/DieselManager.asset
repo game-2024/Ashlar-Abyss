@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DieselManager
   m_EditorClassIdentifier: 
   maxDiesel: 1000
-  currentDiesel: 700
+  currentDiesel: 16
   onDieselUpdated:
     m_PersistentCalls:
       m_Calls: []
