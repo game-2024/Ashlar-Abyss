@@ -42,6 +42,83 @@ public class PlayerWeaponScript : MonoBehaviour
     private bool WeaponHeatedToggledOn = false;
 
 
+    public void DecreaseDiesel()
+    {
+        DieselManager.DecreaseDieselByAmount(DieselDrainRate);
+    }
+
+    public void ToggleWeaponHeated()
+    { 
+        WeaponHeatedToggledOn = !WeaponHeatedToggledOn;
+
+        if (WeaponHeatedToggledOn == true)
+        {
+            DieselDrainTimer.ResumeTimer();
+            SetHeatedWeaponSettings();
+        }
+        else
+        {
+            TurnOffSword();
+        }
+    }
+
+    public void TurnOffSword()
+    {
+        WeaponHeatedToggledOn = false;
+        DieselDrainTimer.PauseTimer();
+        SetNonHeatedWeaponSettings();
+        DecreaseWeaponLight();
+    }
+
+    #region Set Weapon Damage Based Off Current Active State
+
+    private void SetHeatedWeaponSettings()
+    {
+        CurrentDamageAmountToDeal = HeatedDamageToDeal;
+        CurrentDamageAmountScaler = HeatedDamageScaler;
+
+        DamagerComponent.DamageToDeal = CurrentDamageAmountToDeal * CurrentDamageAmountScaler;
+
+    }
+
+    private void SetNonHeatedWeaponSettings()
+    {
+        CurrentDamageAmountToDeal = DamageToDeal;
+        CurrentDamageAmountScaler = DamageScaler;
+
+        DamagerComponent.DamageToDeal = CurrentDamageAmountToDeal * CurrentDamageAmountScaler;
+
+    }
+
+    #endregion
+
+    #region Weapon Light Settings
+    
+    
+    private void DecreaseWeaponLight()
+    {
+        WeaponLight.intensity -= LightIntensityIncreaseScaler * Time.deltaTime;
+
+        if (WeaponLight.intensity < 0)
+        {
+            WeaponLight.intensity = 0;
+        }
+    }
+
+    private void IncreaseWeaponLight()
+    {
+        WeaponLight.intensity += LightIntensityIncreaseScaler * Time.deltaTime;
+
+        if (WeaponLight.intensity > MaxLightIntensity)
+        {
+            WeaponLight.intensity = MaxLightIntensity;
+        }
+    }
+
+
+    #endregion
+
+
     private void Start()
     {
         CurrentDamageAmountToDeal = this.DamageToDeal;
@@ -61,79 +138,6 @@ public class PlayerWeaponScript : MonoBehaviour
         {
             DecreaseWeaponLight();
         }
-    }
-
-    public void ToggleWeaponHeated()
-    {
-
-        WeaponHeatedToggledOn = !WeaponHeatedToggledOn;
-
-        if (WeaponHeatedToggledOn == true)
-        {
-            Debug.Log("Toggled");
-            DieselDrainTimer.ResumeTimer();
-            SetHeatedWeaponSettings();
-           // WeaponLight
-        }
-        else
-        {
-            DieselDrainTimer.PauseTimer();
-            SetNonHeatedWeaponSettings();
-        }
-    }
-
-
-    #region Set Weapon Damage Based Off Current Active State
-
-    private void SetHeatedWeaponSettings()
-    {
-        CurrentDamageAmountToDeal = HeatedDamageToDeal;
-        CurrentDamageAmountScaler = HeatedDamageScaler;
-
-        DamagerComponent.DamageToDeal = CurrentDamageAmountToDeal * CurrentDamageAmountScaler;
-
-    }
-
-    private void SetNonHeatedWeaponSettings()
-    {
-        CurrentDamageAmountScaler = DamageScaler;
-        CurrentDamageAmountScaler = DamageScaler;
-
-        DamagerComponent.DamageToDeal = CurrentDamageAmountToDeal * CurrentDamageAmountScaler;
-
-    }
-
-    #endregion
-
-    #region Weapon Light Settings
-
-    private void IncreaseWeaponLight()
-    {
-        WeaponLight.intensity += LightIntensityIncreaseScaler * Time.deltaTime;
-
-        if (WeaponLight.intensity > MaxLightIntensity)
-        {
-            WeaponLight.intensity = MaxLightIntensity;
-        }
-    }
-
-    private void DecreaseWeaponLight()
-    {
-        WeaponLight.intensity -= LightIntensityIncreaseScaler * Time.deltaTime;
-
-        if (WeaponLight.intensity < 0)
-        {
-            WeaponLight.intensity = 0;
-        }
-    }
-
-
-    #endregion
-
-
-    public void DecreaseDiesel()
-    {
-        DieselManager.DecreaseDieselByAmount(DieselDrainRate);
     }
 
 

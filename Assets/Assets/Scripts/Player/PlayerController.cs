@@ -1,122 +1,210 @@
-using Cinemachine;
 using UnityEngine;
+using Cinemachine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-    //Gets refernce to player object where said object has a Speed variable
-    [SerializeField] PlayerStatsScript player;
 
-    //Reference to Lantern object for player to be able to toggle lantern
-    [SerializeField] private LanternScript lantern;
+    Transform PlayerCamTransformReference;
+    [SerializeField] private CharacterController PlayerCharacterController;
 
-    //Player and Diesel Variables for changing variables
-    //FOR TESTING PURPOSES ONLY
-    [SerializeField] private PlayerHealthManagerScript healthManager;
-    [SerializeField] private DieselManagerScript dieselManager;
-
-    //Camera Transform
-    [SerializeField] CinemachineVirtualCamera playerPOVCam;
-    private Transform cameraTransform;
-
-    //Private Speed variable gotten from PlayerStatsScript to allow player movement
-    private float Speed;
-
-    // Start is called before the first frame update
-    void Start()
+    [Space]
+    [Header("Player Equipment")]
+    [SerializeField] LanternScript Lantern;
+    [SerializeField] PlayerWeaponScript PlayerWeapon;
+    [SerializeField] DieselManagerScript DieselManager;
+    public DieselManagerScript DieselManagerProperty
     {
-        cameraTransform = playerPOVCam.transform;
+        get { return DieselManager; }
     }
 
-    void Update()
+
+    [Space]
+    [Header("Player Movement Feel Fields")]
+    [SerializeField] private float SmoothingTime;
+    [SerializeField] private float Speed;
+    [SerializeField] private float Gravity = -9.18f;
+    [SerializeField] private float TerminalVelocity = -50f;
+    private float TargetRotation;
+    private float _rotationVelocity;
+
+    //Events
+    public UnityAction onInteractPressed;
+
+    Vector3 InputAxis;
+    Vector3 Velocity = Vector3.zero;
+
+    enum PlayerDieselState
     {
-        #region Temp Movement
+        None = 0,
+        Lantern = 1,
+        Sword = 2
 
-        float forwardMovement = Input.GetAxis("Vertical");
-        float rightMovement = Input.GetAxis("Horizontal");
+    };
 
-        Vector3 camForward = cameraTransform.forward;
-        Vector3 camRight = cameraTransform.right;
 
-        camForward.y = 0f;
-        camForward.Normalize();
-
-        camRight.y = 0f;
-        camRight.Normalize();
-
-        Vector3 forwardRelative = camForward * forwardMovement;
-        Vector3 rightRelative = camRight * rightMovement;
-
-        Vector3 finalMovement = forwardRelative + rightRelative;
-
-        player.Move(finalMovement);
-
-        Vector3 adjustedRotation = cameraTransform.eulerAngles;
-        adjustedRotation.x = 0f;
-
-        player.transform.eulerAngles = adjustedRotation;
+    PlayerDieselState dieselState = PlayerDieselState.None;
 
 
 
-        //if (Input.GetKey(KeyCode.UpArrow))
-        //{
-        //    player.transform.Translate(new Vector3(0, 0, 1) * Speed * Time.deltaTime, Space.World);
-        //    player.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        //}
+    private void Start()
+    {
+        PlayerCamTransformReference = Camera.main.transform;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
-        //if (Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    player.transform.Translate(new Vector3(0, 0, -1) * Speed * Time.deltaTime, Space.World);
-        //    player.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        //}
 
-        //if (Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    //Move the Rigidbody right constantly at the speed you define (the blue arrow axis in Scene view)  
-        //    player.transform.Translate(new Vector3(1, 0, 0) * Speed * Time.deltaTime, Space.World);
-        //    player.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-        //}
 
-        //if (Input.GetKey(KeyCode.LeftArrow))
-        //{
-        //    //Move the Rigidbody left constantly at the speed you define (the blue arrow axis in Scene view)
-        //    player.transform.Translate(new Vector3(-1, 0, 0) * Speed * Time.deltaTime, Space.World);
-        //    player.transform.rotation = Quaternion.Euler(0f, 270, 0f);
-        //}
-        #endregion
+    private void Update()
+    {
 
-        #region Toggle Lantern ON or OFF
-        if (Input.GetKeyDown(KeyCode.J))
+        InputAxis = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+
+
+        if(Input.GetButtonDown("Interact"))
         {
-            lantern.ToggleLantern();
-        }
-        #endregion
-
-        #region Test Health Adjustments Manually
-
-        //Heal Player
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            healthManager.HealPlayer();
+            onInteractPressed?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
+
+        //Player Movement and Rotations
+        HandleMovement();
+        HandlePlayerRotation();
+
+
+        if(DieselManager.CurrentDiesel <= 0)
         {
-            healthManager.DamagePlayer(healthManager.damage);
+            dieselState= PlayerDieselState.None;
+            Lantern.TurnOffLantern();
+            PlayerWeapon.TurnOffSword();
         }
-
-        #endregion
-
-        #region Restore Diesel Fuel Manually
-
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                dieselManager.CurrentDiesel = dieselManager.MaxDiesel;
-            }
-
-        #endregion
+        else
+        {
+            DieselSwitchState();
+        }
 
 
     }
+
+
+
+    private void DieselSwitchState()
+    {
+        switch (dieselState)
+        {
+
+            //Case if Player isnt using diesel equipment. Look for player input to change state
+            case PlayerDieselState.None:
+
+                #region Case None Logic
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    dieselState = PlayerDieselState.Lantern;
+                    Lantern.ToggleLantern();
+                }
+                else if (Input.GetKeyDown(KeyCode.G))
+                {
+                    dieselState = PlayerDieselState.Sword;
+                    PlayerWeapon.ToggleWeaponHeated();
+                }
+
+                Debug.Log("In None State");
+                #endregion
+
+                break;
+
+            //Case if Player is using Lantern. Look for player input to change exit Lantern state
+            case PlayerDieselState.Lantern:
+
+                #region Case Lantern Logic
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    dieselState = PlayerDieselState.None;
+                    Lantern.ToggleLantern();
+                }
+
+                Debug.Log(" In Lantern State");
+                #endregion
+
+                break;
+
+            //Case if Player is using Sword. Look for player input to change exit Sword state
+            case PlayerDieselState.Sword:
+
+                #region Case Sword Logic
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    dieselState = PlayerDieselState.None;
+                    PlayerWeapon.ToggleWeaponHeated();
+                }
+
+                Debug.Log("In Sword State");
+                #endregion
+
+                break;
+
+            default:
+                dieselState = PlayerDieselState.None;
+                break;
+
+        }
+    }
+
+
+    #region Player Movement And Rotation Functions
+
+    private void HandleMovement()
+    {
+        //Condition if We want player to not be able to move after falling
+        ////if (PlayerCharacterController.isGrounded == true)
+
+        #region X and Z Movement
+        Vector3 forwardCamRelativeMovement = PlayerCamTransformReference.forward;
+        Vector3 horizontalCamRelativeMovement = PlayerCamTransformReference.right;
+
+        forwardCamRelativeMovement.y = 0f;
+        horizontalCamRelativeMovement.y = 0f;
+
+        forwardCamRelativeMovement.Normalize();
+        horizontalCamRelativeMovement.Normalize();
+
+
+        Vector3 finalInputCamRelativeMove = forwardCamRelativeMovement * InputAxis.z + horizontalCamRelativeMovement * InputAxis.x;
+        finalInputCamRelativeMove.y = 0f;
+        finalInputCamRelativeMove.Normalize();
+        #endregion
+        //X and Z Movement Move Call on Controller
+        PlayerCharacterController.Move(Speed * Time.deltaTime * finalInputCamRelativeMove);
+
+        #region Gravity/Y Velocity Movement
+        if (PlayerCharacterController.isGrounded && Velocity.y <= 0)
+        {
+            Velocity.y = -0.5f;
+        }
+        Velocity.y = Velocity.y >= TerminalVelocity ? Gravity * Time.deltaTime + Velocity.y : TerminalVelocity;
+        #endregion
+        //Gravity/Y Velocity Move Call on Controller
+        PlayerCharacterController.Move(Velocity * Time.deltaTime);
+
+    }
+
+    private void HandlePlayerRotation()
+    {
+        if (InputAxis != Vector3.zero)
+        {
+
+            TargetRotation = Mathf.Atan2(InputAxis.x, InputAxis.z) * Mathf.Rad2Deg + PlayerCamTransformReference.eulerAngles.y;
+
+            float rotation = Mathf.SmoothDampAngle(PlayerCharacterController.transform.eulerAngles.y, TargetRotation,
+                                                    ref _rotationVelocity, SmoothingTime);
+
+            PlayerCharacterController.transform.rotation = Quaternion.Euler(0f, rotation, 0f);
+        }
+    }
+
+    #endregion
+
+
+   
 
 }
-

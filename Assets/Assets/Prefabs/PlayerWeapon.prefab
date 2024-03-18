@@ -73,7 +73,7 @@ Transform:
   m_GameObject: {fileID: 5756527624846819167}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1.089, z: 0}
+  m_LocalPosition: {x: 0, y: 0.242, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,8 +91,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9245283, g: 0.20569949, b: 0.100302614, a: 1}
-  m_Intensity: 0
-  m_Range: 1.5
+  m_Intensity: 1
+  m_Range: 10
   m_SpotAngle: 1
   m_InnerSpotAngle: 1
   m_CookieSize: 10
@@ -347,7 +347,7 @@ MonoBehaviour:
   DamagerComponent: {fileID: 6981603596229596602}
   WeaponLight: {fileID: 3825863074836680575}
   MaxLightIntensity: 1
-  LightIntensityIncreaseScaler: 1.5
+  LightIntensityIncreaseScaler: 0.75
   DamageToDeal: 5
   DamageScaler: 1
   HeatedDamageToDeal: 10

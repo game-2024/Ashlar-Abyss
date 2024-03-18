@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LanternScript : MonoBehaviour
@@ -33,8 +32,7 @@ public class LanternScript : MonoBehaviour
         }
         else
         {
-            DimLantern();
-            LowerLanterOpacity();
+            TurnOffLantern();
         }
     }
 
@@ -54,6 +52,15 @@ public class LanternScript : MonoBehaviour
         {
             lanternTimer.PauseTimer();
         }
+
+    }
+
+    public void TurnOffLantern()
+    {
+        playerBrightensLantern = false;
+        lanternTimer.PauseTimer();
+        DimLantern();
+        LowerLanterOpacity();
 
     }
 
