@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16675481, g: 0.14117566, b: 0.1066361, a: 1}
+  m_IndirectSpecularColor: {r: 0.16792524, g: 0.14229447, b: 0.1072818, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -211,6 +211,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2008382760515479020, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008382760515479020, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008382760515479020, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008382760515479020, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 2912143004941432251, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -221,20 +237,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4554971932839507318, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 331
+      value: 719
       objectReference: {fileID: 0}
     - target: {fileID: 4554971932839507318, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -192.67
+      value: -406
       objectReference: {fileID: 0}
     - target: {fileID: 6106001598797128585, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
       propertyPath: textField
       value: 
-      objectReference: {fileID: 1444447479}
+      objectReference: {fileID: 0}
     - target: {fileID: 6106001598797128585, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
       propertyPath: diesel_Text
       value: 
-      objectReference: {fileID: 1444447479}
+      objectReference: {fileID: 0}
     - target: {fileID: 6106001598797128585, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
       propertyPath: health_Text
       value: 
@@ -1309,7 +1325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 331, y: -317.66998}
+  m_AnchoredPosition: {x: 717, y: -531}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &958129383
@@ -1417,7 +1433,7 @@ Transform:
   m_GameObject: {fileID: 1245327256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.437529, y: 2.7049227, z: -7}
+  m_LocalPosition: {x: 1.4372108, y: 2.7049227, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1778,17 +1794,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DieselRefuelAmount: 10
---- !u!114 &1444447479 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3634445726974675036, guid: ef70a5c42df5b4749894ab05e30c43f1, type: 3}
-  m_PrefabInstance: {fileID: 27293787}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1451167383
 GameObject:
   m_ObjectHideFlags: 3
@@ -2028,7 +2033,7 @@ Transform:
   m_GameObject: {fileID: 1506527618}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.437529, y: 2.7049227, z: -7}
+  m_LocalPosition: {x: 1.4372108, y: 2.7049227, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2117,7 +2122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -364.85, y: -192.67}
+  m_AnchoredPosition: {x: -719, y: -429}
   m_SizeDelta: {x: 394.29, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1648134138
@@ -2684,7 +2689,6 @@ MonoBehaviour:
   DieselManager: {fileID: 11400000, guid: e203a334e20724e4d830b6fb109bce64, type: 2}
   MaximumDieselValueRotation: -90
   MinimumDieslValueRotation: 90
-  DieselPercentage: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
