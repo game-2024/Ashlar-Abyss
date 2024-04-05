@@ -27,16 +27,6 @@ public class DieselBackPack : MonoBehaviour
 
 
 
-
-    void Start()
-    {
-
-        //TankSlots.DieselTank1 = Instantiate(TestTankSpawn, TankSlots.DieselTankTransform1);
-        //TankSlots.DieselTank2 = Instantiate(TestTankSpawn, TankSlots.DieselTankTransform2);
-
-    }
-
-
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.L))
@@ -55,6 +45,7 @@ public class DieselBackPack : MonoBehaviour
 
         bool swapTanks = false;
 
+     
 
         //Nulled DieslTank value for the ref dieselSlotToOccupy;
         DieselTank nullDiesel = null;
@@ -95,6 +86,11 @@ public class DieselBackPack : MonoBehaviour
 
             swapTanks = true;
 
+        }
+        else
+        {
+            Destroy(newTank.gameObject);
+            return;
         }
 
 

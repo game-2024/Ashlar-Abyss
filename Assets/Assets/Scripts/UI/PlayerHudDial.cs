@@ -59,21 +59,13 @@ public class PlayerHudDial : MonoBehaviour
         #region Diesel Needle Update
 
         //Variable will be value between Min and Max Value Rotation based of percantage(lerp) between Max and Min
-        float dieselDialValueToRotateTo = Mathf.Lerp(dieselValues.MinimumDieselValueRotation,
-                                    dieselValues.MaximumDieselValueRotation, DieselPercentage);
+        float dialValueToRotateTo = Mathf.Lerp(dieselValues.MinimumDieselValueRotation,dieselValues.MaximumDieselValueRotation, DieselPercentage);
 
-        Debug.Log(dieselDialValueToRotateTo);
 
-        float currentAngle = dieselValues.DieselNeedle.transform.eulerAngles.z;
-        float newAngle = Mathf.Lerp(currentAngle, dieselDialValueToRotateTo, Time.deltaTime);
-        newAngle = Mathf.Clamp(newAngle,dieselValues.MinimumDieselValueRotation, dieselValues.MaximumDieselValueRotation);
+        Quaternion currentRotation = dieselValues.DieselNeedle.transform.rotation;
+        Quaternion newRotation = Quaternion.Euler(new Vector3(0f, 0f, dialValueToRotateTo));
 
-        //Quaternion dieselCurrentRotation = dieselValues.DieselNeedle.transform.rotation;
-        //Quaternion dieselNewRotation = Quaternion.Euler(new Vector3(0f, 0f, dieselDialValueToRotateTo));
-
-        dieselValues.DieselNeedle.transform.eulerAngles = new Vector3(0f, 0f, newAngle);
-
-        //dieselValues.DieselNeedle.transform.rotation = Quaternion.Slerp(dieselCurrentRotation, dieselNewRotation, Time.deltaTime);
+        dieselValues.DieselNeedle.transform.rotation = Quaternion.Lerp(currentRotation, newRotation, Time.deltaTime);
 
         #endregion
 
@@ -113,7 +105,8 @@ public class PlayerHudDial : MonoBehaviour
         }
         else
         {
-            DieselPercentage = Mathf.Clamp(currentNewDiesel / (float)maxNewDiesel, 0f, 1f);
+            //DieselPercentage = Mathf.Clamp(currentNewDiesel / (float)maxNewDiesel, 0f, 1f);
+            DieselPercentage = currentNewDiesel / 100f;
         }
     }
 
