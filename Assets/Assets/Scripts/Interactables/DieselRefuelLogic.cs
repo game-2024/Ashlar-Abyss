@@ -8,11 +8,14 @@ public class DieselRefuelLogic : MonoBehaviour
     [SerializeField][Range(1,50)] int DieselRefuelAmount = 1;
 
 
-    DieselManagerScript PlayerDieselManager;
+    DieselBackPack playersDieselBackPack = null;
 
     public void RefuelPlayer()
     {
-        PlayerDieselManager.IncreaseDieselByAmount(DieselRefuelAmount);
+        if(playersDieselBackPack != null)
+        {
+            playersDieselBackPack?.RefuelDiesel(DieselRefuelAmount);
+        }
     }
 
 
@@ -20,9 +23,9 @@ public class DieselRefuelLogic : MonoBehaviour
     {
         PlayerController player = other.GetComponent<PlayerController>();
 
-        if (player != null)
+        if (other.GetComponent<PlayerController>() != null)
         {
-            PlayerDieselManager = player.DieselManagerProperty;
+            playersDieselBackPack = other.gameObject.GetComponentInChildren<DieselBackPack>();
         }
     }
 
@@ -30,10 +33,9 @@ public class DieselRefuelLogic : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         
-        PlayerController player = other.GetComponent<PlayerController>();
-        if (player != null)
+        if (other.GetComponent<PlayerController>() != null)
         {
-            PlayerDieselManager = null;
+            playersDieselBackPack = null;
         }
 
 

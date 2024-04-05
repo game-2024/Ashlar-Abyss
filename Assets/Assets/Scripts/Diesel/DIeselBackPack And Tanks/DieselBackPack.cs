@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class DieselBackPack : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-
-    public DieselTank TestTankSpawn;
-    public DieselManagerScript DieselManager;
+    [SerializeField] private DieselManagerScript DieselManager;
 
 
     [Serializable] private struct DieselTankSlots
@@ -26,26 +22,10 @@ public class DieselBackPack : MonoBehaviour
     [SerializeField] private DieselTankSlots TankSlots;
 
 
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            DieselTank dieselTank = Instantiate(TestTankSpawn);
-            TankPickedUp(dieselTank);
-        }
-
-
-
-    }
-
-
     public void TankPickedUp(DieselTank newTank)
     {
 
         bool swapTanks = false;
-
-     
 
         //Nulled DieslTank value for the ref dieselSlotToOccupy;
         DieselTank nullDiesel = null;
@@ -102,10 +82,22 @@ public class DieselBackPack : MonoBehaviour
             dieselSlotToOccupy.transform.localPosition = Vector3.zero;
             dieselSlotToOccupy.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
 
+
+
+
             DieselManager.DieselTankGained(dieselSlotToOccupy);
 
         }
     }
+
+
+
+    public void RefuelDiesel(int dieselAmountToRefuel)
+    {
+        DieselManager.IncreaseDieselByAmount(dieselAmountToRefuel);
+    }
+
+
 
 
 }
