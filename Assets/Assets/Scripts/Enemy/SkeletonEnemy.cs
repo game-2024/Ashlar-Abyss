@@ -8,12 +8,42 @@ public class SkeletonEnemy : MonoBehaviour
     [SerializeField] private NavMeshAgent EnemyNavAgent;
     [SerializeField] private Animator EnemyAnimator;
 
+    [SerializeField] private Damager WeaponDamager;
 
     private PlayerController Player;
-
-
     private Vector3 StartingPosition;
 
+
+
+
+    [SerializeField] private float maxHealth;
+    public float MaxHealth 
+    {
+        private set { maxHealth = value; }
+        get { return currentHealth; }
+    }
+
+    private float currentHealth;
+    public float CurrentHealth
+    {
+        private set {
+            
+            currentHealth = value;
+
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+
+            if (currentHealth < 0)
+            {
+                currentHealth = 0;
+                Destroy(this.gameObject);
+            }
+        }
+
+        get { return currentHealth; }
+    }
 
     public enum EnemyState
     {
@@ -26,6 +56,14 @@ public class SkeletonEnemy : MonoBehaviour
 
 
 
+    public void TakeDamage(float damage_to_take)
+    {
+        Debug.Log("I am hurt pls help");
+        CurrentHealth -= damage_to_take;
+    }
+
+
+
 
 
 
@@ -35,47 +73,51 @@ public class SkeletonEnemy : MonoBehaviour
         StartingPosition = transform.position;  
         SkeletonState = EnemyState.Idle;
         Player = null;
+
+        WeaponDamager.enabled = false;
+
+        currentHealth = maxHealth;
+
+        StartCoroutine(SkeletonCoroutineUpdate());
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator SkeletonCoroutineUpdate()
     {
-
-
-        switch (SkeletonState)
+        while (true)
         {
-            case EnemyState.Idle:
-                IdleUpdate();
-                break;
+            switch (SkeletonState)
+            {
+                case EnemyState.Idle:
+                    IdleUpdate();
+                    break;
 
-            case EnemyState.Chase:
-                ChaseUpdate();
-                break ;
+                case EnemyState.Chase:
+                    ChaseUpdate();
+                    break;
 
-            case EnemyState.Return:
-                ReturnUpdate();
-                break;
+                case EnemyState.Return:
+                    ReturnUpdate();
+                    break;
 
-            case EnemyState.Attack:
-                StartCoroutine(AttackUpdate());
-                break;
+                case EnemyState.Attack:
+                    AttackUpdate();
+                    yield return StartCoroutine(AttackUpdate());
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
 
-                    
+            }
+
+
+            yield return null;
         }
-
-
     }
-
-
 
     private void IdleUpdate()
     {
-        EnemyAnimator.SetBool("isMoving", false);
     }
-
 
     private void ChaseUpdate()
     {
@@ -85,8 +127,6 @@ public class SkeletonEnemy : MonoBehaviour
             SkeletonState = EnemyState.Return;
             return;
         }
-
-
 
         Vector3 playerPosition = Player.transform.position;
         playerPosition.y = 0f;
@@ -113,7 +153,7 @@ public class SkeletonEnemy : MonoBehaviour
         if (distance < 0.5f)
         {
             Debug.Log("position reached");
-            SkeletonState = EnemyState.Idle;
+            ChangeState(EnemyState.Idle);
         }
 
     }
@@ -121,56 +161,63 @@ public class SkeletonEnemy : MonoBehaviour
     private IEnumerator AttackUpdate()
     {
 
-        EnemyAnimator.Play("DS_onehand_attack_A");
-
-
+        EnemyAnimator.SetTrigger("isAttacking");
         EnemyNavAgent.isStopped = true;
-
         Debug.Log("Calling wait");
-
-
         float animLength = EnemyAnimator.GetCurrentAnimatorStateInfo(0).length;
 
+        WeaponDamager.enabled = true;
+        //1f is used to give enough time to have enemy not move and for animation to finish
+        yield return new WaitForSeconds(1f);
 
-        yield return new WaitForSeconds(animLength);
         Debug.Log("After wait");
+        WeaponDamager.enabled = false;
 
-        EnemyNavAgent.isStopped = false;
-
-        SkeletonState = EnemyState.Chase;
-
-
-    }
-
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.TryGetComponent<PlayerController>(out PlayerController player))
+        float distanceToPlayer = Vector3.Distance(Player.transform.position, transform.position);
+        if (distanceToPlayer > 2f)
         {
-            //Set State to Chase Player
-
+            EnemyNavAgent.isStopped = false;
             SkeletonState = EnemyState.Chase;
-            Player = player;
-
         }
+        
+
     }
 
-    private void OnTriggerExit(Collider other)
+
+
+    public void ChangeState(EnemyState newState)
     {
-        if (other.GetComponent<PlayerController>() != null)
+        switch (newState)
         {
+            case EnemyState.Idle:
+                EnemyAnimator.SetBool("isMoving", false);
+                break;
 
-            //Set State to Return
+            case EnemyState.Chase:
+                break;
 
-            SkeletonState = EnemyState.Return;
+            case EnemyState.Return:
+                EnemyNavAgent.SetDestination(StartingPosition);
+                EnemyAnimator.SetBool("isMoving", true);
 
-            EnemyNavAgent.SetDestination(StartingPosition);
-            EnemyAnimator.SetBool("isMoving", true);
+                Player = null;
+                break;
 
-            Player = null;
+            case EnemyState.Attack:
+                break;
+
 
         }
+
+        SkeletonState = newState;
+
+    }
+
+
+
+    public void SetPlayerReference(PlayerController player)
+    {
+        Player = player;
     }
 
 

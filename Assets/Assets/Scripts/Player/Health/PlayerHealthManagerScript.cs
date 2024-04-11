@@ -37,7 +37,6 @@ public class PlayerHealthManagerScript : ScriptableObject
         }
     }
 
-    public int damage = 1;//remove after testing
     public int heal = 1;//remove after testing
 
 
