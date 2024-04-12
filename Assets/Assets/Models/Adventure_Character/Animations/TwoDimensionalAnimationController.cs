@@ -5,12 +5,12 @@ using UnityEngine;
 public class TwoDimensionalAnimationController : MonoBehaviour
 {
     Animator animator;
-    float VelocityZ = 0.0f;
-    float VelocityX = 0.0f;
-    public float acceleration = 2.0f;
-    public float deceleration = 2.0f;
+    float AnimWeightZ = 0.0f;
+    float AnimWeightX = 0.0f;
+    public float acceleration = 1.0f;
+    public float deceleration = 1.0f;
     public float MaximumWalkVelocity = 0.5f;
-    public float MaximumRunVelocity = 2.0f;
+    public float MaximumRunVelocity = 1.0f;
  // Start is called before the first frame update
     void Start()
     {
@@ -20,104 +20,104 @@ public class TwoDimensionalAnimationController : MonoBehaviour
     void ChangeVelocity(bool forwardPressed, bool leftPressed, bool rightPressed,bool runPressed, float CurrentMaxVelocity)
     {
         //If statements that increase velocity longer holds key.
-        if (forwardPressed && VelocityZ < CurrentMaxVelocity)
+        if (forwardPressed && AnimWeightZ < CurrentMaxVelocity)
         {
-            VelocityZ += Time.deltaTime * acceleration;
+            AnimWeightZ += Time.deltaTime * acceleration;
         }
-        if (leftPressed && VelocityX > -CurrentMaxVelocity)
+        if (leftPressed && AnimWeightX > -CurrentMaxVelocity)
         {
-            VelocityX -= Time.deltaTime * acceleration;
+            AnimWeightX -= Time.deltaTime * acceleration;
         }
-        if (rightPressed && VelocityX < CurrentMaxVelocity)
+        if (rightPressed && AnimWeightX < CurrentMaxVelocity)
         {
-            VelocityX += Time.deltaTime * acceleration;
+            AnimWeightX += Time.deltaTime * acceleration;
         }
         //Deceleration statements and adding limits
-        if (!forwardPressed && VelocityZ > 0.0f)
+        if (!forwardPressed && AnimWeightZ > 0.0f)
         {
-            VelocityZ -= Time.deltaTime * deceleration;
+            AnimWeightZ -= Time.deltaTime * deceleration;
         }
-        if (!forwardPressed && VelocityZ < 0.0f)
+        if (!forwardPressed && AnimWeightZ < 0.0f)
         {
-            VelocityZ = 0.0f;
+            AnimWeightZ = 0.0f;
         }
         //Deceleration for Left and Right
-        if (!rightPressed && VelocityX > 0.0f) // if not right press and greater than 0, decrease
+        if (!rightPressed && AnimWeightX > 0.0f) // if not right press and greater than 0, decrease
         {
-            VelocityX -= Time.deltaTime * deceleration;
+            AnimWeightX -= Time.deltaTime * deceleration;
         }
-        if (!leftPressed && VelocityX < 0.0f) //if not left press and greater than 0, decrease
+        if (!leftPressed && AnimWeightX < 0.0f) //if not left press and greater than 0, decrease
         {
-            VelocityX += Time.deltaTime * deceleration;
+            AnimWeightX += Time.deltaTime * deceleration;
         }
     }
     void LockOrResetVelocity(bool forwardPressed, bool leftPressed, bool rightPressed, bool runPressed, float CurrentMaxVelocity)
     {
         //Final reset for X, needs additional parameters for if velocity gets bugged, failsafe.
-        if (!leftPressed && !rightPressed && VelocityX != 0.0f && (VelocityX > -0.05f && VelocityX < 0.05f))
+        if (!leftPressed && !rightPressed && AnimWeightX != 0.0f && (AnimWeightX > -0.05f && AnimWeightX < 0.05f))
         {
-            VelocityX = 0.0f;
+            AnimWeightX = 0.0f;
         }
         //Lock Forward 
-        if (forwardPressed && runPressed && VelocityZ > CurrentMaxVelocity)
+        if (forwardPressed && runPressed && AnimWeightZ > CurrentMaxVelocity)
         {
-            VelocityZ = CurrentMaxVelocity;
+            AnimWeightZ = CurrentMaxVelocity;
         }
         //Decelerate to maximum walk velocity
-        else if (forwardPressed && VelocityZ > CurrentMaxVelocity)
+        else if (forwardPressed && AnimWeightZ > CurrentMaxVelocity)
         {
-            VelocityZ -= Time.deltaTime * deceleration;
+            AnimWeightZ -= Time.deltaTime * deceleration;
             //Rounds to CurrentMaxVelocity if within decel offset.
-            if (VelocityZ > CurrentMaxVelocity && VelocityZ < (CurrentMaxVelocity + 0.05))
+            if (AnimWeightZ > CurrentMaxVelocity && AnimWeightZ < (CurrentMaxVelocity + 0.05))
             {
-                VelocityZ = CurrentMaxVelocity;
+                AnimWeightZ = CurrentMaxVelocity;
             }
         }
         //rounds to CurrentMaxVelocity if within accel offset.
-        else if (forwardPressed && VelocityZ < CurrentMaxVelocity && VelocityZ > (CurrentMaxVelocity - 0.05f))
+        else if (forwardPressed && AnimWeightZ < CurrentMaxVelocity && AnimWeightZ > (CurrentMaxVelocity - 0.05f))
         {
-            VelocityZ = CurrentMaxVelocity;
+            AnimWeightZ = CurrentMaxVelocity;
         }
 
         //Lock Left *All values are reversed since X axis is negative.*
-        if (leftPressed && runPressed && VelocityX < -CurrentMaxVelocity)
+        if (leftPressed && runPressed && AnimWeightX < -CurrentMaxVelocity)
         {
-            VelocityX = -CurrentMaxVelocity;
+            AnimWeightX = -CurrentMaxVelocity;
         }
         //Decelerate to maximum walk velocity
-        else if (leftPressed && VelocityX < -CurrentMaxVelocity)
+        else if (leftPressed && AnimWeightX < -CurrentMaxVelocity)
         {
-            VelocityX += Time.deltaTime * deceleration;
+            AnimWeightX += Time.deltaTime * deceleration;
             //Rounds to CurrentMaxVelocity if within decel offset.
-            if (VelocityX < -CurrentMaxVelocity && VelocityX > (-CurrentMaxVelocity - 0.05f))
+            if (AnimWeightX < -CurrentMaxVelocity && AnimWeightX > (-CurrentMaxVelocity - 0.05f))
             {
-                VelocityX = -CurrentMaxVelocity;
+                AnimWeightX = -CurrentMaxVelocity;
             }
         }
         //rounds to CurrentMaxVelocity if within accel offset.
-        else if (leftPressed && VelocityX > -CurrentMaxVelocity && VelocityX < (-CurrentMaxVelocity + 0.05f))
+        else if (leftPressed && AnimWeightX > -CurrentMaxVelocity && AnimWeightX < (-CurrentMaxVelocity + 0.05f))
         {
-            VelocityX = -CurrentMaxVelocity;
+            AnimWeightX = -CurrentMaxVelocity;
         }
         //Lock Right 
-        if (rightPressed && runPressed && VelocityX > CurrentMaxVelocity)
+        if (rightPressed && runPressed && AnimWeightX > CurrentMaxVelocity)
         {
-            VelocityX = CurrentMaxVelocity;
+            AnimWeightX = CurrentMaxVelocity;
         }
         //Decelerate to maximum walk velocity
-        else if (rightPressed && VelocityX > CurrentMaxVelocity)
+        else if (rightPressed && AnimWeightX > CurrentMaxVelocity)
         {
-            VelocityX -= Time.deltaTime * deceleration;
+            AnimWeightX -= Time.deltaTime * deceleration;
             //Rounds to CurrentMaxVelocity if within decel offset.
-            if (VelocityX > CurrentMaxVelocity && VelocityX < (CurrentMaxVelocity + 0.05f))
+            if (AnimWeightX > CurrentMaxVelocity && AnimWeightX < (CurrentMaxVelocity + 0.05f))
             {
-                VelocityX = CurrentMaxVelocity;
+                AnimWeightX = CurrentMaxVelocity;
             }
         }
         //rounds to CurrentMaxVelocity if within accel offset.
-        else if (rightPressed && VelocityX < CurrentMaxVelocity && VelocityX > (CurrentMaxVelocity - 0.05f))
+        else if (rightPressed && AnimWeightX < CurrentMaxVelocity && AnimWeightX > (CurrentMaxVelocity - 0.05f))
         {
-            VelocityX = CurrentMaxVelocity;
+            AnimWeightX = CurrentMaxVelocity;
         }
     }
 
@@ -135,7 +135,7 @@ public class TwoDimensionalAnimationController : MonoBehaviour
         ChangeVelocity(forwardPressed, leftPressed, rightPressed, runPressed, CurrentMaxVelocity);
         LockOrResetVelocity(forwardPressed, leftPressed, rightPressed, runPressed, CurrentMaxVelocity);
         //Calls reference from other local variables.
-        animator.SetFloat("VelocityZ", VelocityZ);
-        animator.SetFloat("VelocityX", VelocityX);
+        animator.SetFloat("AnimWeightZ", AnimWeightZ);
+        animator.SetFloat("AnimWeightX", AnimWeightX);
     }
 }
