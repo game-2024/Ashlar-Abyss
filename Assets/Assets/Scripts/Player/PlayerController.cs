@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Movement Feel Fields")]
     [SerializeField] private float SmoothingTime;
     [SerializeField] private float Speed;
+    [SerializeField] private float RunSpeed;
     [SerializeField] private float Gravity = -9.18f;
     [SerializeField] private float TerminalVelocity = -50f;
     private float TargetRotation;
@@ -66,9 +67,13 @@ public class PlayerController : MonoBehaviour
             onInteractPressed?.Invoke();
         }
 
-
         //Player Movement and Rotations
-        HandleMovement();
+        #region 
+        if (Input.GetKey(KeyCode.LeftShift)) //Check if shift is down
+            HandleMovement(RunSpeed);
+        else
+            HandleMovement(Speed);
+        #endregion
         HandlePlayerRotation();
 
 
@@ -108,7 +113,7 @@ public class PlayerController : MonoBehaviour
                     PlayerWeapon.ToggleWeaponHeated();
                 }
 
-                Debug.Log("In None State");
+                //Debug.Log("In None State");
                 #endregion
 
                 break;
@@ -123,7 +128,7 @@ public class PlayerController : MonoBehaviour
                     Lantern.ToggleLantern();
                 }
 
-                Debug.Log(" In Lantern State");
+                //Debug.Log(" In Lantern State");
                 #endregion
 
                 break;
@@ -138,7 +143,7 @@ public class PlayerController : MonoBehaviour
                     PlayerWeapon.ToggleWeaponHeated();
                 }
 
-                Debug.Log("In Sword State");
+                //Debug.Log("In Sword State");
                 #endregion
 
                 break;
@@ -153,7 +158,7 @@ public class PlayerController : MonoBehaviour
 
     #region Player Movement And Rotation Functions
 
-    private void HandleMovement()
+    private void HandleMovement(float MoveSpeed)
     {
         //Condition if We want player to not be able to move after falling
         ////if (PlayerCharacterController.isGrounded == true)
@@ -174,7 +179,7 @@ public class PlayerController : MonoBehaviour
         finalInputCamRelativeMove.Normalize();
         #endregion
         //X and Z Movement Move Call on Controller
-        PlayerCharacterController.Move(Speed * Time.deltaTime * finalInputCamRelativeMove);
+        PlayerCharacterController.Move(MoveSpeed * Time.deltaTime * finalInputCamRelativeMove);
 
         #region Gravity/Y Velocity Movement
         if (PlayerCharacterController.isGrounded && Velocity.y <= 0)
