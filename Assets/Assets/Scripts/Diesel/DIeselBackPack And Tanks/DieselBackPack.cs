@@ -80,7 +80,7 @@ public class DieselBackPack : MonoBehaviour
             dieselSlotToOccupy = newTank;
             dieselSlotToOccupy.transform.SetParent(dieselSlotTranformToOccupy);
             dieselSlotToOccupy.transform.localPosition = Vector3.zero;
-            dieselSlotToOccupy.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            dieselSlotToOccupy.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
 
 
 
