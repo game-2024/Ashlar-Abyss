@@ -86,14 +86,6 @@ public class PlayerHudDial : MonoBehaviour
 
         #endregion
 
-
-
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            PlayerHealthManager.DamagePlayer(10f);
-        }
-
-
     }
 
     //Function is Listner to the DieselManager Scriptable Object

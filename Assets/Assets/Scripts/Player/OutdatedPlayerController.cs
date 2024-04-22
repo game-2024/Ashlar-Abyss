@@ -99,10 +99,6 @@ public class OutdatedPlayerController : MonoBehaviour
             healthManager.HealPlayer();
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            healthManager.DamagePlayer(healthManager.damage);
-        }
 
         #endregion
 
