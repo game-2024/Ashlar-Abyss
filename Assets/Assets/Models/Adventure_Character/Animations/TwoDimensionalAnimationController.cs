@@ -125,17 +125,24 @@ public class TwoDimensionalAnimationController : MonoBehaviour
     void Update()
     {
  //Get key input from player
-        bool forwardPressed = Input.GetKey("w");
-        bool leftPressed = Input.GetKey("a");
-        bool rightPressed = Input.GetKey("d");
-        bool runPressed = Input.GetKey("left shift");
-        // Set Current Max Velocity, used for running
-        float CurrentMaxVelocity = runPressed ? MaximumRunVelocity : MaximumWalkVelocity; //statement sets CurrentMaxVelocity to one of 2 values if true or false.
-        //Call functions to handle all changes in velocity
-        ChangeVelocity(forwardPressed, leftPressed, rightPressed, runPressed, CurrentMaxVelocity);
-        LockOrResetVelocity(forwardPressed, leftPressed, rightPressed, runPressed, CurrentMaxVelocity);
+        //bool forwardPressed = Input.GetKey("w");
+        //bool leftPressed = Input.GetKey("a");
+        //bool rightPressed = Input.GetKey("d");
+        //bool runPressed = Input.GetKey("left shift");
+        //// Set Current Max Velocity, used for running
+        //float CurrentMaxVelocity = runPressed ? MaximumRunVelocity : MaximumWalkVelocity; //statement sets CurrentMaxVelocity to one of 2 values if true or false.
+        ////Call functions to handle all changes in velocity
+        //ChangeVelocity(forwardPressed, leftPressed, rightPressed, runPressed, CurrentMaxVelocity);
+        //LockOrResetVelocity(forwardPressed, leftPressed, rightPressed, runPressed, CurrentMaxVelocity);
         //Calls reference from other local variables.
-        animator.SetFloat("AnimWeightZ", AnimWeightZ);
-        animator.SetFloat("AnimWeightX", AnimWeightX);
+        animator.SetFloat("AnimWeightZ", Input.GetAxis("Vertical"));
+        animator.SetFloat("AnimWeightX", Input.GetAxis("Horizontal"));
+
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            animator.SetTrigger("isAttacking");
+        }
+
+
     }
 }
