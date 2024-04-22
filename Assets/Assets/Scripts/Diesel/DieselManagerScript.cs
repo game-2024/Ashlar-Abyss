@@ -11,14 +11,14 @@ using UnityEngine.Timeline;
 
 public class DieselManagerScript : ScriptableObject
 {
-    private int maxDiesel;
+    [SerializeField] private int maxDiesel;
     public int MaxDiesel
     {
         get { return maxDiesel; }
         private set { maxDiesel = value; }
     }
 
-    private int currentDiesel;
+    [SerializeField]private int currentDiesel;
     public int CurrentDiesel
     {
         get { return currentDiesel; }
