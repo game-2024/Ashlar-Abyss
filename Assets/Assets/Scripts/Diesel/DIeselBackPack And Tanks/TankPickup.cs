@@ -2,38 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DieselRefuelLogic : MonoBehaviour
+public class TankPickup : MonoBehaviour
 {
 
-    [SerializeField][Range(1,50)] int DieselRefuelAmount = 1;
-
+    [SerializeField] DieselTank PickUpTank;
 
     DieselBackPack playersDieselBackPack = null;
 
-    public void RefuelPlayer()
+    public void PickUpInteracted()
     {
         if(playersDieselBackPack != null)
         {
-            playersDieselBackPack?.RefuelDiesel(DieselRefuelAmount);
+            playersDieselBackPack?.TankPickedUp(PickUpTank);
         }
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerController player = other.GetComponent<PlayerController>();
 
         if (other.GetComponent<PlayerController>() != null)
         {
             playersDieselBackPack = other.gameObject.GetComponentInChildren<DieselBackPack>();
         }
-    }
 
+    }
 
     private void OnTriggerExit(Collider other)
     {
         
-        if (other.GetComponent<PlayerController>() != null)
+        if(other.GetComponent<PlayerController>() != null)
         {
             playersDieselBackPack = null;
         }

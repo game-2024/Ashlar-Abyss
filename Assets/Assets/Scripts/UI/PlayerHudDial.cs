@@ -6,6 +6,8 @@ public class PlayerHudDial : MonoBehaviour
 {
 
 
+    public float NeedleSpeed = 1f;
+
     #region Diesel Fields
     [SerializeField] private DieselManagerScript DieselManager;
 
@@ -22,7 +24,7 @@ public class PlayerHudDial : MonoBehaviour
 
     [SerializeField] private DieselNeedleFields dieselValues;
 
-    private float DieselPercentage = 1f;
+    [SerializeField] private float DieselPercentage;
 
     #endregion
 
@@ -46,7 +48,10 @@ public class PlayerHudDial : MonoBehaviour
 
     #endregion
 
-
+    private void Start()
+    {
+        DieselPercentage = 0f;
+    }
 
 
     private void Update()
@@ -54,15 +59,13 @@ public class PlayerHudDial : MonoBehaviour
         #region Diesel Needle Update
 
         //Variable will be value between Min and Max Value Rotation based of percantage(lerp) between Max and Min
-        float dieselDialValueToRotateTo = Mathf.Lerp(dieselValues.MinimumDieselValueRotation,
-                                    dieselValues.MaximumDieselValueRotation, DieselPercentage);
+        float dialValueToRotateTo = Mathf.Lerp(dieselValues.MinimumDieselValueRotation,dieselValues.MaximumDieselValueRotation, DieselPercentage);
 
 
+        Quaternion currentRotation = dieselValues.DieselNeedle.transform.rotation;
+        Quaternion newRotation = Quaternion.Euler(new Vector3(0f, 0f, dialValueToRotateTo));
 
-        Quaternion dieselCurrentRotation = dieselValues.DieselNeedle.transform.rotation;
-        Quaternion dieselNewRotation = Quaternion.Euler(new Vector3(0f, 0f, dieselDialValueToRotateTo));
-
-        dieselValues.DieselNeedle.transform.rotation = Quaternion.Lerp(dieselCurrentRotation, dieselNewRotation, Time.deltaTime);
+        dieselValues.DieselNeedle.transform.rotation = Quaternion.Lerp(currentRotation, newRotation, Time.deltaTime);
 
         #endregion
 
@@ -96,7 +99,15 @@ public class PlayerHudDial : MonoBehaviour
     //Function is Listner to the DieselManager Scriptable Object
     private void UpdateDiesel(int currentNewDiesel, int maxNewDiesel)
     {
-        DieselPercentage = Mathf.Clamp(currentNewDiesel/ (float)maxNewDiesel,0f,1f) ;
+        if (maxNewDiesel == 0)
+        {
+            DieselPercentage = 0f;
+        }
+        else
+        {
+            //DieselPercentage = Mathf.Clamp(currentNewDiesel / (float)maxNewDiesel, 0f, 1f);
+            DieselPercentage = currentNewDiesel / 100f;
+        }
     }
 
     //Function is Listner to the PLayerHealthManager Scriptable Object

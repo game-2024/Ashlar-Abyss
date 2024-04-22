@@ -11,13 +11,14 @@ using UnityEngine.Timeline;
 
 public class DieselManagerScript : ScriptableObject
 {
-    [SerializeField] private int maxDiesel = 1000;
+    private int maxDiesel;
     public int MaxDiesel
     {
         get { return maxDiesel; }
+        private set { maxDiesel = value; }
     }
 
-    [SerializeField] private int currentDiesel;
+    private int currentDiesel;
     public int CurrentDiesel
     {
         get { return currentDiesel; }
@@ -42,8 +43,8 @@ public class DieselManagerScript : ScriptableObject
 
     private void OnEnable()
     {
+        maxDiesel = 0;
         currentDiesel = maxDiesel;
-        onDieselUpdated?.Invoke(CurrentDiesel, MaxDiesel);
     }
 
     public void DecreaseDieselByAmount(int amountToDecrease)
@@ -57,6 +58,41 @@ public class DieselManagerScript : ScriptableObject
     {
         CurrentDiesel += amountToIncrease;
         onDieselUpdated?.Invoke(currentDiesel, maxDiesel);
+    }
+
+
+    public void DieselTankGained(DieselTank newTank)
+    {
+        if (newTank == null)
+        {
+            return;
+        }
+
+        MaxDiesel += newTank.TankMaxDiesel;
+        CurrentDiesel += newTank.TankCurrentDiesel;
+
+        onDieselUpdated?.Invoke(currentDiesel, maxDiesel);
+
+    }
+
+    public void DieselTankRemoved(DieselTank oldTank)
+    {
+
+        if(oldTank == null)
+        {
+            return;
+        }
+
+
+        MaxDiesel -= oldTank.TankMaxDiesel;
+        CurrentDiesel -= oldTank.TankCurrentDiesel;
+
+        onDieselUpdated?.Invoke(currentDiesel, MaxDiesel);
+    }
+
+    public void InitialDieselValuesInvoke()
+    {
+        onDieselUpdated?.Invoke(CurrentDiesel, MaxDiesel);
     }
 
 

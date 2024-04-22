@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
         None = 0,
         Lantern = 1,
         Sword = 2
-
     };
 
 
