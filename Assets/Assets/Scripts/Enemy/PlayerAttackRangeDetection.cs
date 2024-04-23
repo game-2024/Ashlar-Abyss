@@ -10,8 +10,6 @@ public class PlayerAttackRangeDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("On Trigger");
-
         if (other.TryGetComponent<PlayerController>(out PlayerController player))
         {
             Skeleton.ChangeState(SkeletonEnemy.EnemyState.Attack);
@@ -24,7 +22,6 @@ public class PlayerAttackRangeDetection : MonoBehaviour
         if (other.GetComponent<PlayerController>() != null)
         {
             Skeleton.PlayerIsInAttackRange = false;
-            Debug.Log("Exit");
         }
     }
 

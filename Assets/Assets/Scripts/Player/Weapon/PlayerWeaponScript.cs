@@ -9,6 +9,7 @@ public class PlayerWeaponScript : MonoBehaviour
         [SerializeField] DieselManagerScript DieselManager;
         [SerializeField] TimeIntervalComponentScript DieselDrainTimer;
         [SerializeField] Damager DamagerComponent;
+        [SerializeField] CapsuleCollider WeaponCollision;
 
     [Space]
 
@@ -144,12 +145,12 @@ public class PlayerWeaponScript : MonoBehaviour
 
     public void EnableDamagerComponent()
     {
-        DamagerComponent.enabled = true;
+        WeaponCollision.enabled = true;
     }
 
     public void DisableDamagerComponent() 
     {
-        DamagerComponent.enabled = false;
+        WeaponCollision.enabled = false;
     }
 
 

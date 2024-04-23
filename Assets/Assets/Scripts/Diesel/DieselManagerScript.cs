@@ -43,6 +43,11 @@ public class DieselManagerScript : ScriptableObject
 
     private void OnEnable()
     {
+        InitializeDieselManager();
+    }
+
+    public void InitializeDieselManager()
+    {
         maxDiesel = 0;
         currentDiesel = maxDiesel;
     }

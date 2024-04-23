@@ -8,5 +8,5 @@ public interface IDamageable
 
 public interface IDamager
 {
-    public void DealDamage(Collider collided_with);
+    public void DealDamage(Damageable damagedEntity);
 }

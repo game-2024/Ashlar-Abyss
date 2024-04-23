@@ -15,6 +15,7 @@ public class TwoDimensionalAnimationController : MonoBehaviour
     [SerializeField][Range(0.1f, 1f)] float AnimatorSpeed = 0.5f;
 
     [SerializeField] private UnityEvent OnAttackAnimSwingStart;
+    [SerializeField] private UnityEvent OnSwordComeBack;
     [SerializeField] private UnityEvent OnAttackAnimSwingEnd;
 
 
@@ -161,7 +162,12 @@ public class TwoDimensionalAnimationController : MonoBehaviour
         OnAttackAnimSwingStart?.Invoke();
     }
 
-    public void OnSwordSwung()
+    public void OnSwordComingBack()
+    {
+        OnSwordComeBack?.Invoke();
+    }
+
+    public void OnSwordAttackAnimFinish()
     {
         OnAttackAnimSwingEnd?.Invoke();
     }
@@ -169,7 +175,6 @@ public class TwoDimensionalAnimationController : MonoBehaviour
     public void TriggerAttackAnimState()
     {
         animator.SetTrigger("isAttacking");
-
     }
 
 

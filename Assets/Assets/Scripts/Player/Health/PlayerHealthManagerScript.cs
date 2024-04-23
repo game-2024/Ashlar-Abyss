@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,6 +29,7 @@ public class PlayerHealthManagerScript : ScriptableObject
             if(currHealth < 0)
             {
                 currHealth = 0;
+                OnPlayerDied?.Invoke();
             }
 
         }
@@ -42,11 +40,19 @@ public class PlayerHealthManagerScript : ScriptableObject
 
     [HideInInspector]
     public UnityEvent<float, float> onHealthAdjust;
+    public event UnityAction OnPlayerDied;
 
     private void OnEnable()
     {
+        InitializeHealthManager();
+    }
+
+    public void InitializeHealthManager()
+    {
         currHealth = maxHealth;
     }
+
+
 
 
     public void HealPlayer()//Healing system for player

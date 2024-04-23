@@ -20,16 +20,18 @@ public class Damager : MonoBehaviour, IDamager
 
 
 
-    public void DealDamage(Collider collided_with)
+    public void DealDamage(Damageable damagedEntity)
     {
-        Damageable collision = collided_with.gameObject.GetComponent<Damageable>();
-
-
-        if(collision != null)
-        {
-            //Debug.Log(collision.gameObject.name);
-            collision.TakeDamage(DamageToDeal);
-        }
-
+        damagedEntity.TakeDamage(DamageToDeal);
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<Damageable>(out Damageable damageable))
+        {
+            DealDamage(damageable);
+        }
+    }
+
 }

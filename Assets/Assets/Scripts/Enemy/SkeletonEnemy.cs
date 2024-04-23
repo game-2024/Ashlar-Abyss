@@ -8,7 +8,7 @@ public class SkeletonEnemy : MonoBehaviour
     [SerializeField] private NavMeshAgent EnemyNavAgent;
     [SerializeField] private Animator EnemyAnimator;
 
-    [SerializeField] private Damager WeaponDamager;
+    [SerializeField] private CapsuleCollider WeaponDamageCollider;
 
     [SerializeField] private float RecoveryTime = 1f;
 
@@ -64,7 +64,6 @@ public class SkeletonEnemy : MonoBehaviour
 
     public void TakeDamage(float damage_to_take)
     {
-        Debug.Log("I am hurt pls help");
         CurrentHealth -= damage_to_take;
     }
 
@@ -80,7 +79,7 @@ public class SkeletonEnemy : MonoBehaviour
         SkeletonState = EnemyState.Idle;
         Player = null;
 
-        WeaponDamager.enabled = false;
+        WeaponDamageCollider.enabled = false;
 
         currentHealth = maxHealth;
 
@@ -173,16 +172,14 @@ public class SkeletonEnemy : MonoBehaviour
 
         EnemyAnimator.SetTrigger("isAttacking");
         EnemyNavAgent.isStopped = true;
-        Debug.Log("Calling wait");
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Player.transform.rotation, 0.5f);
 
-        WeaponDamager.enabled = true;
+        WeaponDamageCollider.enabled = true;
         //1f is used to give enough time to have enemy not move and for animation to finish
         yield return new WaitForSeconds(1f);
 
-        Debug.Log("After wait");
-        WeaponDamager.enabled = false;
+        WeaponDamageCollider.enabled = false;
         ChangeState(EnemyState.Recover);
 
         //float distanceToPlayer = Vector3.Distance(Player.transform.position, transform.position);
