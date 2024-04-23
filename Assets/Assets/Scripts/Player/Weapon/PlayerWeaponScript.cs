@@ -125,6 +125,8 @@ public class PlayerWeaponScript : MonoBehaviour
         CurrentDamageAmountScaler = DamageScaler;
 
         DamagerComponent.DamageToDeal = CurrentDamageAmountToDeal * CurrentDamageAmountScaler;
+
+        DisableDamagerComponent();
     }
 
 
@@ -140,7 +142,15 @@ public class PlayerWeaponScript : MonoBehaviour
         }
     }
 
+    public void EnableDamagerComponent()
+    {
+        DamagerComponent.enabled = true;
+    }
 
+    public void DisableDamagerComponent() 
+    {
+        DamagerComponent.enabled = false;
+    }
 
 
 }

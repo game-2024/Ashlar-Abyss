@@ -14,7 +14,8 @@ public class TwoDimensionalAnimationController : MonoBehaviour
 
     [SerializeField][Range(0.1f, 1f)] float AnimatorSpeed = 0.5f;
 
-    [SerializeField] private UnityEvent OnAttackAnimEventCalled;
+    [SerializeField] private UnityEvent OnAttackAnimSwingStart;
+    [SerializeField] private UnityEvent OnAttackAnimSwingEnd;
 
 
  
@@ -154,10 +155,15 @@ public class TwoDimensionalAnimationController : MonoBehaviour
     }
 
 
+
+    public void OnSwordStartSwing()
+    {
+        OnAttackAnimSwingStart?.Invoke();
+    }
+
     public void OnSwordSwung()
     {
-        Debug.Log("Invoking Event");
-        OnAttackAnimEventCalled?.Invoke();
+        OnAttackAnimSwingEnd?.Invoke();
     }
 
     public void TriggerAttackAnimState()
