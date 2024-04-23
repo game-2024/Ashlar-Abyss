@@ -14,7 +14,7 @@ public class DieselRefuelLogic : MonoBehaviour
     {
         if(playersDieselBackPack != null)
         {
-            playersDieselBackPack?.RefuelDiesel(DieselRefuelAmount);
+            playersDieselBackPack.RefuelDiesel(DieselRefuelAmount);
         }
     }
 

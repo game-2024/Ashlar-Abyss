@@ -7,7 +7,6 @@ public class DieselBackPackPickup : MonoBehaviour
 
     [SerializeField] DieselBackPack dieselBackPack;
     Transform playerBackPackPosition;
-    PlayerController player;
 
 
     public void OnInteractionPerformed()
@@ -40,7 +39,7 @@ public class DieselBackPackPickup : MonoBehaviour
     {
         if(other.GetComponent<PlayerController>() != null)
         {
-            player = null;
+            playerBackPackPosition = null;
         }
     }
 }

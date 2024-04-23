@@ -14,6 +14,7 @@ public class TankPickup : MonoBehaviour
         if(playersDieselBackPack != null)
         {
             playersDieselBackPack?.TankPickedUp(PickUpTank);
+            Destroy(this.gameObject);
         }
     }
 
