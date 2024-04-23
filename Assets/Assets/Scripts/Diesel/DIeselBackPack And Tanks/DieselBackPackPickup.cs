@@ -28,9 +28,11 @@ public class DieselBackPackPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if( other.TryGetComponent<PlayerController>(out player) )
+        if( other.GetComponentInChildren<BackPackLocation>() != null )
         {
-            playerBackPackPosition = player.transform.Find("BackPackLocation");
+            BackPackLocation location = other.GetComponentInChildren<BackPackLocation>();
+            playerBackPackPosition = location.transform;
+            //Debug.Log("Position Found");
         }
     }
 

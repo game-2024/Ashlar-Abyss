@@ -10,9 +10,14 @@ public class SkeletonEnemy : MonoBehaviour
 
     [SerializeField] private Damager WeaponDamager;
 
+    [SerializeField] private float RecoveryTime = 1f;
+
     private PlayerController Player;
     private Vector3 StartingPosition;
 
+
+    [HideInInspector]
+    public bool PlayerIsInAttackRange = false;
 
 
 
@@ -50,7 +55,8 @@ public class SkeletonEnemy : MonoBehaviour
         Idle,
         Chase,
         Return,
-        Attack
+        Attack,
+        Recover
     }
     public EnemyState SkeletonState;
 
@@ -105,6 +111,10 @@ public class SkeletonEnemy : MonoBehaviour
                     yield return StartCoroutine(AttackUpdate());
                     break;
 
+                case EnemyState.Recover:
+                    yield return RecoverUpdate();
+                    break;
+
                 default:
                     break;
 
@@ -135,12 +145,12 @@ public class SkeletonEnemy : MonoBehaviour
         EnemyAnimator.SetBool("isMoving", true);
 
 
-        float distanceToPlayer = Vector3.Distance(Player.transform.position, transform.position);
+        //float distanceToPlayer = Vector3.Distance(Player.transform.position, transform.position);
 
-        if(distanceToPlayer < 2f)
-        {
-            SkeletonState = EnemyState.Attack;
-        }
+        //if(distanceToPlayer < 2f)
+        //{
+        //    SkeletonState = EnemyState.Attack;
+        //}
 
 
     }
@@ -164,7 +174,8 @@ public class SkeletonEnemy : MonoBehaviour
         EnemyAnimator.SetTrigger("isAttacking");
         EnemyNavAgent.isStopped = true;
         Debug.Log("Calling wait");
-        float animLength = EnemyAnimator.GetCurrentAnimatorStateInfo(0).length;
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Player.transform.rotation, 0.5f);
 
         WeaponDamager.enabled = true;
         //1f is used to give enough time to have enemy not move and for animation to finish
@@ -172,17 +183,41 @@ public class SkeletonEnemy : MonoBehaviour
 
         Debug.Log("After wait");
         WeaponDamager.enabled = false;
+        ChangeState(EnemyState.Recover);
 
-        float distanceToPlayer = Vector3.Distance(Player.transform.position, transform.position);
-        if (distanceToPlayer > 2f)
-        {
-            EnemyNavAgent.isStopped = false;
-            SkeletonState = EnemyState.Chase;
-        }
-        
+        //float distanceToPlayer = Vector3.Distance(Player.transform.position, transform.position);
+        //if (distanceToPlayer > 2f)
+        //{
+        //    EnemyNavAgent.isStopped = false;
+        //    SkeletonState = EnemyState.Chase;
+        //}
+
 
     }
 
+    private IEnumerator RecoverUpdate()
+    {
+
+        EnemyAnimator.speed = 0f;
+        yield return new WaitForSeconds(RecoveryTime);
+
+        EnemyAnimator.speed = 1f;
+
+        EnemyNavAgent.isStopped = false;
+
+
+        if (PlayerIsInAttackRange == true)
+        {
+            ChangeState(EnemyState.Attack);
+        }
+        else
+        {
+            ChangeState(EnemyState.Chase);
+        }
+
+
+
+    }
 
 
     public void ChangeState(EnemyState newState)
@@ -206,6 +241,9 @@ public class SkeletonEnemy : MonoBehaviour
             case EnemyState.Attack:
                 break;
 
+
+            case EnemyState.Recover:
+                break;
 
         }
 

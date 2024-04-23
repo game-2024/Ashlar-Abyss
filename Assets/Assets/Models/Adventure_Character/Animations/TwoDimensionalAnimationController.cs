@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TwoDimensionalAnimationController : MonoBehaviour
 {
@@ -11,10 +10,20 @@ public class TwoDimensionalAnimationController : MonoBehaviour
     public float deceleration = 1.0f;
     public float MaximumWalkVelocity = 0.5f;
     public float MaximumRunVelocity = 1.0f;
+
+
+    [SerializeField][Range(0.1f, 1f)] float AnimatorSpeed = 0.5f;
+
+    [SerializeField] private UnityEvent OnAttackAnimEventCalled;
+
+
+ 
  // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        animator.speed = AnimatorSpeed;
+
     }
  //Function handles Acceleration and Deceleration
     void ChangeVelocity(bool forwardPressed, bool leftPressed, bool rightPressed,bool runPressed, float CurrentMaxVelocity)
@@ -124,7 +133,7 @@ public class TwoDimensionalAnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- //Get key input from player
+        //Get key input from player
         //bool forwardPressed = Input.GetKey("w");
         //bool leftPressed = Input.GetKey("a");
         //bool rightPressed = Input.GetKey("d");
@@ -135,14 +144,28 @@ public class TwoDimensionalAnimationController : MonoBehaviour
         //ChangeVelocity(forwardPressed, leftPressed, rightPressed, runPressed, CurrentMaxVelocity);
         //LockOrResetVelocity(forwardPressed, leftPressed, rightPressed, runPressed, CurrentMaxVelocity);
         //Calls reference from other local variables.
-        animator.SetFloat("AnimWeightZ", Input.GetAxis("Vertical"));
+
+
+        float forwardInputAxis = Input.GetAxis("Vertical") >= 0.1 ? Input.GetAxis("Vertical") : Input.GetAxis("Vertical") * 0.5f;
+
+        animator.SetFloat("AnimWeightZ", forwardInputAxis);
         animator.SetFloat("AnimWeightX", Input.GetAxis("Horizontal"));
 
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            animator.SetTrigger("isAttacking");
-        }
+    }
 
+
+    public void OnSwordSwung()
+    {
+        Debug.Log("Invoking Event");
+        OnAttackAnimEventCalled?.Invoke();
+    }
+
+    public void TriggerAttackAnimState()
+    {
+        animator.SetTrigger("isAttacking");
 
     }
+
+
+
 }

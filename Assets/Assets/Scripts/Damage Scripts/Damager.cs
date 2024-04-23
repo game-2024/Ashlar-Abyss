@@ -27,7 +27,7 @@ public class Damager : MonoBehaviour, IDamager
 
         if(collision != null)
         {
-            Debug.Log(collision.gameObject.name);
+            //Debug.Log(collision.gameObject.name);
             collision.TakeDamage(DamageToDeal);
         }
 

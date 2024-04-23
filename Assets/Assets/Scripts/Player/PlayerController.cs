@@ -25,14 +25,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private float Gravity = -9.18f;
     [SerializeField] private float TerminalVelocity = -50f;
+    [SerializeField] private float BackWardsMultiplier = 0.25f;
     private float TargetRotation;
     private float _rotationVelocity;
 
     //Events
     public UnityAction onInteractPressed;
+    public UnityEvent onAttackPressed;
+
 
     Vector3 InputAxis;
     Vector3 Velocity = Vector3.zero;
+    bool IsAttacking = false;
 
     enum PlayerDieselState
     {
@@ -40,7 +44,6 @@ public class PlayerController : MonoBehaviour
         Lantern = 1,
         Sword = 2
     };
-
 
     PlayerDieselState dieselState = PlayerDieselState.None;
 
@@ -57,23 +60,37 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-        InputAxis = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        float forwardInput = Input.GetAxis("Vertical") >= 0.1 ? Input.GetAxis("Vertical") : Input.GetAxis("Vertical") * BackWardsMultiplier;
+
+        InputAxis = new Vector3(Input.GetAxis("Horizontal"), 0f, forwardInput);
 
 
-        if(Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Interact"))
         {
             onInteractPressed?.Invoke();
         }
 
+        if (Input.GetButtonDown("Fire1") && IsAttacking == false)
+        {
+            IsAttacking = true;
+            onAttackPressed?.Invoke();
+        }
 
         //Player Movement and Rotations
-        HandleMovement();
-        HandlePlayerRotation();
 
-
-        if(DieselManager.CurrentDiesel <= 0)
+        if (IsAttacking == false)
         {
-            dieselState= PlayerDieselState.None;
+            HandleMovement();
+            HandlePlayerRotation();
+        }
+
+
+
+
+        //Diesel State
+        if (DieselManager.CurrentDiesel <= 0)
+        {
+            dieselState = PlayerDieselState.None;
             Lantern.TurnOffLantern();
             PlayerWeapon.TurnOffSword();
         }
@@ -107,7 +124,7 @@ public class PlayerController : MonoBehaviour
                     PlayerWeapon.ToggleWeaponHeated();
                 }
 
-                Debug.Log("In None State");
+                //Debug.Log("In None State");
                 #endregion
 
                 break;
@@ -122,7 +139,7 @@ public class PlayerController : MonoBehaviour
                     Lantern.ToggleLantern();
                 }
 
-                Debug.Log(" In Lantern State");
+                //Debug.Log(" In Lantern State");
                 #endregion
 
                 break;
@@ -137,7 +154,7 @@ public class PlayerController : MonoBehaviour
                     PlayerWeapon.ToggleWeaponHeated();
                 }
 
-                Debug.Log("In Sword State");
+                //Debug.Log("In Sword State");
                 #endregion
 
                 break;
@@ -173,7 +190,16 @@ public class PlayerController : MonoBehaviour
         finalInputCamRelativeMove.Normalize();
         #endregion
         //X and Z Movement Move Call on Controller
-        PlayerCharacterController.Move(Speed * Time.deltaTime * finalInputCamRelativeMove);
+
+        if(InputAxis.z >= 0)
+        {
+            PlayerCharacterController.Move(Speed * Time.deltaTime * finalInputCamRelativeMove);
+        }
+        else
+        {
+            PlayerCharacterController.Move(Speed * BackWardsMultiplier * Time.deltaTime * finalInputCamRelativeMove);
+        }
+
 
         #region Gravity/Y Velocity Movement
         if (PlayerCharacterController.isGrounded && Velocity.y <= 0)
@@ -192,18 +218,30 @@ public class PlayerController : MonoBehaviour
         if (InputAxis != Vector3.zero)
         {
 
-            TargetRotation = Mathf.Atan2(InputAxis.x, InputAxis.z) * Mathf.Rad2Deg + PlayerCamTransformReference.eulerAngles.y;
+            //TargetRotation = Mathf.Atan2(InputAxis.x, InputAxis.z) * Mathf.Rad2Deg + PlayerCamTransformReference.eulerAngles.y;
 
-            float rotation = Mathf.SmoothDampAngle(PlayerCharacterController.transform.eulerAngles.y, TargetRotation,
-                                                    ref _rotationVelocity, SmoothingTime);
+            //float rotation = Mathf.SmoothDampAngle(PlayerCharacterController.transform.eulerAngles.y, TargetRotation,
+            //                                        ref _rotationVelocity, SmoothingTime);
 
-            PlayerCharacterController.transform.rotation = Quaternion.Euler(0f, rotation, 0f);
+            //PlayerCharacterController.transform.rotation = Quaternion.Euler(0f, rotation, 0f);
+
+
+            Vector3 playerForward = PlayerCamTransformReference.forward;
+            playerForward.y = 0f;
+            transform.forward = playerForward;
+
         }
     }
 
     #endregion
 
 
-   
+
+
+    public void ResetAttackState()
+    {
+        IsAttacking = false;
+    }
+
 
 }

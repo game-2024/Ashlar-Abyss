@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     public void PerformInteraction()
     {
         onPerformInteraction?.Invoke();
-        Debug.Log(gameObject.name + " was interacted with");
+        //Debug.Log(gameObject.name + " was interacted with");
     }
 
     //Add PerfomInteraction as a Listener to player's onInteraction Event
@@ -22,7 +22,7 @@ public class Interactable : MonoBehaviour
 
         if (player != null)
         {
-            Debug.Log("Entered interataction zone");
+            //Debug.Log("Entered interataction zone");
             player.onInteractPressed += PerformInteraction;
         }
 
@@ -36,7 +36,7 @@ public class Interactable : MonoBehaviour
 
         if (player != null)
         {
-            Debug.Log("Exit interataction zone");
+            //Debug.Log("Exit interataction zone");
             player.onInteractPressed -= PerformInteraction;
         }
     }
