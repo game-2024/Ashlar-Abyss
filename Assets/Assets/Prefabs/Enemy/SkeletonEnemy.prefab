@@ -114,6 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1963635108069552465}
   - component: {fileID: 2250118146671993484}
+  - component: {fileID: 516879088394706998}
   m_Layer: 10
   m_Name: AttackDetection
   m_TagString: Untagged
@@ -159,6 +160,19 @@ CapsuleCollider:
   m_Height: 2.53
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.4}
+--- !u!114 &516879088394706998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2532029233012892152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3989ac7f527896340a0aa9ee204a7f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skeleton: {fileID: 3185072204790958293}
 --- !u!1 &2771310204356940457
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyNavAgent: {fileID: 597439934221853731}
   EnemyAnimator: {fileID: 5904279718827695776}
-  WeaponDamager: {fileID: 8139958137684093252}
+  WeaponDamageCollider: {fileID: 8675446410148517453}
   RecoveryTime: 1
   PlayerIsInAttackRange: 0
   maxHealth: 20
