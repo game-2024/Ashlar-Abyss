@@ -1,0 +1,202 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3369489029444304702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905605173977683765}
+  - component: {fileID: 3849429122931032440}
+  - component: {fileID: 7068055929710739363}
+  - component: {fileID: 1538696071543528190}
+  m_Layer: 0
+  m_Name: SwordPickUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &905605173977683765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369489029444304702}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.957, y: 1.5525615, z: -6.197}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 292523931517162876}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3849429122931032440
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369489029444304702}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.77
+  m_Height: 1.96
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.54, z: 0}
+--- !u!114 &7068055929710739363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369489029444304702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b52fa760fdf72a41946a3c33409698d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPerformInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1538696071543528190}
+        m_TargetAssemblyTypeName: Swordinteractable, Assembly-CSharp
+        m_MethodName: OnInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1538696071543528190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369489029444304702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a68e81e0628dd44e9d17a201ad3cbdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWeapon: {fileID: 744324672479946487}
+--- !u!1001 &3046492643710671652
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 905605173977683765}
+    m_Modifications:
+    - target: {fileID: 2311208297586163155, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: DieselDrainRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2311208297586163155, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: WeaponCollision
+      value: 
+      objectReference: {fileID: 208827833340587626}
+    - target: {fileID: 2928104080612914510, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676498874351132293, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+      propertyPath: m_Name
+      value: PlayerWeapon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+--- !u!136 &208827833340587626 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 2928104080612914510, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+  m_PrefabInstance: {fileID: 3046492643710671652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &292523931517162876 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3334933238078934616, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+  m_PrefabInstance: {fileID: 3046492643710671652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &744324672479946487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2311208297586163155, guid: 98facfc64e5a7694a99c83ba46e60b49, type: 3}
+  m_PrefabInstance: {fileID: 3046492643710671652}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb02251b44d005a45b2c820a6ea96cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

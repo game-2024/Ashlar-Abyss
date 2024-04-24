@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6006535736191958486}
   - component: {fileID: 6095505700770509487}
-  - component: {fileID: 6493804352981591633}
-  - component: {fileID: 2753334021975607883}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -27,12 +25,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5283124498834272844}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.1676, y: 0.1114, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
+  m_LocalPosition: {x: 0, y: 0.1114, z: 0.16760002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8202424418627064989}
+  m_Father: {fileID: 826139376072259121}
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!108 &6095505700770509487
 Light:
@@ -47,12 +45,12 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.5566038, g: 0.38724664, b: 0.107645065, a: 0.8156863}
   m_Intensity: 0
-  m_Range: 10
+  m_Range: 50
   m_SpotAngle: 86
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -96,54 +94,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &6493804352981591633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5283124498834272844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33332edd181db684793de61125c59f2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lanternLight: {fileID: 6095505700770509487}
-  maxLightIntensity: 2
-  lightDimmingScale: 1.25
-  dieselManager: {fileID: 11400000, guid: e203a334e20724e4d830b6fb109bce64, type: 2}
-  drainRate: 1
-  lanternTimer: {fileID: 0}
-  lanterMaterial: {fileID: 2100000, guid: 4863408099e3198498087ffdb16ee944, type: 2}
---- !u!114 &2753334021975607883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5283124498834272844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2306aad23125fa478c089743491943d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timePerInterval: 1.6
-  timerPaused: 1
-  onTimerComplete:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6493804352981591633}
-        m_TargetAssemblyTypeName: LanternScript, Assembly-CSharp
-        m_MethodName: DecreaseDiesel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6399735239284062726
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +103,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 826139376072259121}
+  - component: {fileID: 4690365844428792660}
+  - component: {fileID: 8866431548355490384}
   m_Layer: 0
   m_Name: Lantern
   m_TagString: Untagged
@@ -174,8 +126,57 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8202424418627064989}
+  - {fileID: 6006535736191958486}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4690365844428792660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6399735239284062726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33332edd181db684793de61125c59f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lanternLight: {fileID: 6095505700770509487}
+  maxLightIntensity: 3
+  lightDimmingScale: 1.25
+  dieselManager: {fileID: 11400000, guid: e203a334e20724e4d830b6fb109bce64, type: 2}
+  drainRate: 1
+  lanternTimer: {fileID: 0}
+  lanterMaterial: {fileID: 2100000, guid: 4863408099e3198498087ffdb16ee944, type: 2}
+--- !u!114 &8866431548355490384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6399735239284062726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2306aad23125fa478c089743491943d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timePerInterval: 1.6
+  timerPaused: 1
+  onTimerComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4690365844428792660}
+        m_TargetAssemblyTypeName: LanternScript, Assembly-CSharp
+        m_MethodName: DecreaseDiesel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &8529365733086131062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,16 +225,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7601226680800833775, guid: cf18881b45d29554a89874737b755ac5, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6652725513331149018, guid: cf18881b45d29554a89874737b755ac5, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cf18881b45d29554a89874737b755ac5, type: 3}
       propertyPath: m_Name
       value: Lantern
       objectReference: {fileID: 0}
+    - target: {fileID: 1659665722778467851, guid: cf18881b45d29554a89874737b755ac5, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766212503428324877, guid: cf18881b45d29554a89874737b755ac5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8032750206264916975, guid: cf18881b45d29554a89874737b755ac5, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8442510506162454399, guid: cf18881b45d29554a89874737b755ac5, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: cf18881b45d29554a89874737b755ac5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6006535736191958486}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf18881b45d29554a89874737b755ac5, type: 3}
 --- !u!4 &8202424418627064989 stripped

@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 1963635108069552465}
   - component: {fileID: 2250118146671993484}
   - component: {fileID: 516879088394706998}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: AttackDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -156,8 +156,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.01
-  m_Height: 2.53
+  m_Radius: 0.26
+  m_Height: 1.96
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.4}
 --- !u!114 &516879088394706998
@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 3840408940597946597}
   - component: {fileID: 266319578017868795}
   - component: {fileID: 3395841208174879383}
+  - component: {fileID: 12246367137908341}
   m_Layer: 10
   m_Name: Damageable
   m_TagString: Untagged
@@ -221,8 +222,8 @@ MonoBehaviour:
   onDamaged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3185072204790958293}
-        m_TargetAssemblyTypeName: SkeletonEnemy, Assembly-CSharp
+      - m_Target: {fileID: 12246367137908341}
+        m_TargetAssemblyTypeName: EnemyHealth, Assembly-CSharp
         m_MethodName: TakeDamage
         m_Mode: 0
         m_Arguments:
@@ -256,6 +257,19 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!114 &12246367137908341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2771310204356940457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbeb1f0aa277f7b4e9e7637c1b79a68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
 --- !u!1 &3171816911474711461
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +741,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1.75
+  m_Speed: 2.15
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
@@ -756,7 +770,6 @@ MonoBehaviour:
   WeaponDamageCollider: {fileID: 8675446410148517453}
   RecoveryTime: 1
   PlayerIsInAttackRange: 0
-  maxHealth: 20
   SkeletonState: 0
 --- !u!54 &6547171012135670300
 Rigidbody:

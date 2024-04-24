@@ -70,19 +70,16 @@ public class PlayerController : MonoBehaviour
             onInteractPressed?.Invoke();
         }
 
-        if (Input.GetButtonDown("Fire1") && IsAttacking == false)
+        if (Input.GetButtonDown("Fire1") && IsAttacking == false && PlayerWeapon != null)
         {
             IsAttacking = true;
             onAttackPressed?.Invoke();
         }
 
         //Player Movement and Rotations
+        HandleMovement();
+        HandlePlayerRotation();
 
-        if (IsAttacking == false)
-        {
-            HandleMovement();
-            HandlePlayerRotation();
-        }
 
 
 
@@ -91,8 +88,8 @@ public class PlayerController : MonoBehaviour
         if (DieselManager.CurrentDiesel <= 0)
         {
             dieselState = PlayerDieselState.None;
-            Lantern.TurnOffLantern();
-            PlayerWeapon.TurnOffSword();
+            Lantern?.TurnOffLantern();
+            PlayerWeapon?.TurnOffSword();
         }
         else
         {
@@ -121,7 +118,7 @@ public class PlayerController : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.G))
                 {
                     dieselState = PlayerDieselState.Sword;
-                    PlayerWeapon.ToggleWeaponHeated();
+                    PlayerWeapon?.ToggleWeaponHeated();
                 }
 
                 //Debug.Log("In None State");
@@ -151,7 +148,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.G))
                 {
                     dieselState = PlayerDieselState.None;
-                    PlayerWeapon.ToggleWeaponHeated();
+                    PlayerWeapon?.ToggleWeaponHeated();
                 }
 
                 //Debug.Log("In Sword State");
@@ -236,6 +233,17 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
+
+
+    public void EquipSword(ref PlayerWeaponScript weaponToEquip)
+    {
+        PlayerWeapon = weaponToEquip;
+    }
+
+    public void EquipLantern(ref LanternScript lanternToEquip)
+    {
+        Lantern = lanternToEquip;
+    }
 
 
     public void ResetAttackState()

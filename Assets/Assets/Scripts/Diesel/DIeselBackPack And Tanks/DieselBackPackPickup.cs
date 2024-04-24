@@ -20,7 +20,7 @@ public class DieselBackPackPickup : MonoBehaviour
 
 
             Destroy(playerBackPackPosition.gameObject);
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 
     }

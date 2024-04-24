@@ -19,37 +19,6 @@ public class SkeletonEnemy : MonoBehaviour
     [HideInInspector]
     public bool PlayerIsInAttackRange = false;
 
-
-
-    [SerializeField] private float maxHealth;
-    public float MaxHealth 
-    {
-        private set { maxHealth = value; }
-        get { return currentHealth; }
-    }
-
-    private float currentHealth;
-    public float CurrentHealth
-    {
-        private set {
-            
-            currentHealth = value;
-
-            if (currentHealth > maxHealth)
-            {
-                currentHealth = maxHealth;
-            }
-
-            if (currentHealth < 0)
-            {
-                currentHealth = 0;
-                Destroy(this.gameObject);
-            }
-        }
-
-        get { return currentHealth; }
-    }
-
     public enum EnemyState
     {
         Idle,
@@ -61,17 +30,6 @@ public class SkeletonEnemy : MonoBehaviour
     public EnemyState SkeletonState;
 
 
-
-    public void TakeDamage(float damage_to_take)
-    {
-        CurrentHealth -= damage_to_take;
-    }
-
-
-
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -80,8 +38,6 @@ public class SkeletonEnemy : MonoBehaviour
         Player = null;
 
         WeaponDamageCollider.enabled = false;
-
-        currentHealth = maxHealth;
 
         StartCoroutine(SkeletonCoroutineUpdate());
 
