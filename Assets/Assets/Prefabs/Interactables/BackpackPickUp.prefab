@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3842347105845114804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1460117437858797228}
+  - component: {fileID: 9119339743181682460}
+  - component: {fileID: 1528566017131405965}
+  - component: {fileID: 3450697326755204824}
+  m_Layer: 0
+  m_Name: BackpackPickUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1460117437858797228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842347105845114804}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.949814, y: 1.7623044, z: -6.738572}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6390180088452607049}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &9119339743181682460
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842347105845114804}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1528566017131405965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842347105845114804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541dff25f7821004ab0855f6bdd82506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieselBackPack: {fileID: 7278906123494754610}
+--- !u!114 &3450697326755204824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842347105845114804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b52fa760fdf72a41946a3c33409698d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPerformInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1528566017131405965}
+        m_TargetAssemblyTypeName: DieselBackPackPickup, Assembly-CSharp
+        m_MethodName: OnInteractionPerformed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1001 &157997298141229246
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1460117437858797228}
+    m_Modifications:
+    - target: {fileID: 792525103517358920, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_Name
+      value: BackPackObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.43555322
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.06381611
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.8884128
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.13016792
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -16.671
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -127.766
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cea121544897da043a25679a18f7a61e, type: 3}
+--- !u!4 &6390180088452607049 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6529985656998862071, guid: cea121544897da043a25679a18f7a61e, type: 3}
+  m_PrefabInstance: {fileID: 157997298141229246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7278906123494754610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7436163410984696204, guid: cea121544897da043a25679a18f7a61e, type: 3}
+  m_PrefabInstance: {fileID: 157997298141229246}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0fb15c93775d846b00a0703c60591d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

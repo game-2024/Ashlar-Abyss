@@ -54534,8 +54534,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.7
+    functionName: OnSwordComingBack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.3333334
-    functionName: OnSwordSwung
+    functionName: OnSwordAttackAnimFinish
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

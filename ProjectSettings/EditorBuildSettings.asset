@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FInalPrototypeGameScenes/DeathScene.unity
     guid: a1683bd86550c094ebabe54c8c8a7389
+  - enabled: 1
+    path: Assets/Scenes/FInalPrototypeGameScenes/FinishScene.unity
+    guid: 93e2b04f87ad78f4b9768edd33a4f703
   m_configObjects: {}
